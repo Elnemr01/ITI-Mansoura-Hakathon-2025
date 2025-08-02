@@ -1,0 +1,43 @@
+.contact .conLanding {
+    @apply flex gap-[40px] justify-center;
+}
+
+@media (width <= 667px) {
+    .contact .conLanding {
+    @apply flex-col max-w-[100svh];
+    }
+}
+
+.conLanding .image {
+    @apply basis-1/2 max-w-[360px];
+}
+
+.conLanding .info {
+    @apply flex flex-col justify-center gap-4;
+}
+
+.conLanding .info h1 {
+    @apply capitalize text-[1rem] font-medium text-[rgb(75,85,99)];
+}
+
+.conLanding .info .site,
+.conLanding .info .tele {
+    @apply text-[rgb(107,114,128)];
+}
+
+.conLanding .info h2 {
+    @apply text-[rgb(75,85,99)] text-[1.25rem] font-medium;
+}
+
+.conLanding .info > p {
+    @apply text-[rgb(107,114,128)] text-[15px];
+}
+
+.conLanding .info > button {
+    @apply text-black bg-white w-fit px-[25px] py-[17px] capitalize transition duration-[400ms] border border-black text-[0.875rem];
+}
+
+.conLanding .info > button:hover {
+    @apply text-white bg-black;
+}
+

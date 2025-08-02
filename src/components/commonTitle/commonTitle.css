@@ -1,0 +1,16 @@
+.commonTitle {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding-top: 1.5rem;
+    padding-bottom: 1.5rem;
+    gap: 8px;
+    text-transform: uppercase;
+    color: rgb(112 112 112 );
+    font-size: 1.5rem;
+}
+
+.commonTitle span:last-child {
+    font-weight: 600;
+    color: rgb(55 65 81);
+}
