@@ -1,3 +1,20 @@
+@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@100..900&display=swap');
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    font-family: Outfit;
+}
+
+.container {
+    @apply mx-auto w-full px-[10px] md:w-[590px] md:w-[700px] lg:w-[980px] xl:w-[1200px] ;
+}
+
+
