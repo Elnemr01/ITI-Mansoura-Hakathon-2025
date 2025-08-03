@@ -11,7 +11,6 @@ import Footer from './components/footer/Footer'
 import Myappointments from './pages/Myappointments.jsx'
 import Profile from './pages/Profile'
 
-
 function App() {
 
 
@@ -28,6 +27,9 @@ function App() {
           <Route path='/doctor/:id' element={<Doctor/>}/>
           <Route path='/my-appointments' element={<Myappointments/>}/>
           <Route path='/my-profile' element={<Profile/>}/>
+
+           <Route path="/" element={<Login />} />
+      <Route path="/dashboard" element={<div>مرحبا بك في الداشبورد</div>} />
         </Routes>
         <Footer/>
       </div>
