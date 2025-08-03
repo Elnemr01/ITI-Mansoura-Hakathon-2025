@@ -22,30 +22,30 @@ const Login = () => {
           <span className="sub-title">
             Please {isLogin ? "log" : "sign up"} to book appointment
           </span>
-          <div className="form-group">
-            <label htmlFor="name">full name</label>
-            <input
-              type="text"
-              id="name"
-              value={data.name}
-              onChange={(e) =>
-                SetData((data) => ({ ...data, name: e.target.value }))
-              }
-            />
-          </div>
           {!isLogin && (
             <div className="form-group">
-              <label htmlFor="email">email</label>
+              <label htmlFor="name">full name</label>
               <input
-                type="email"
-                id="email"
-                value={data.email}
+                type="text"
+                id="name"
+                value={data.name}
                 onChange={(e) =>
-                  SetData((data) => ({ ...data, email: e.target.value }))
+                  SetData((data) => ({ ...data, name: e.target.value }))
                 }
               />
             </div>
           )}
+          <div className="form-group">
+            <label htmlFor="email">email</label>
+            <input
+              type="email"
+              id="email"
+              value={data.email}
+              onChange={(e) =>
+                SetData((data) => ({ ...data, email: e.target.value }))
+              }
+            />
+          </div>
           <div className="form-group">
             <label htmlFor="password">password</label>
             <input
