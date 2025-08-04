@@ -1,0 +1,31 @@
+.logingsec{
+    display: flex;
+    padding-left: 25px;
+    margin-top:10%;
+    border-radius: 10px;
+    background-color:rgb(95 111 255);
+    justify-content: space-around;
+    
+}
+
+.text{
+    color: aliceblue;
+    padding-top:50px;
+}
+
+img{
+    width: 210px;
+    height: 230px;
+}
+
+
+.createacc{
+    margin-top: 20px;
+    display: inline-block;
+    color: black;
+    font-size: 10px;
+    border-radius: 50px;
+    background-color: aliceblue;
+    padding: 7px 15px ;
+
+}
