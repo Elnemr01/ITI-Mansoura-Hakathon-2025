@@ -3,12 +3,12 @@ import { createContext } from "react";
 
 export let OurContext = createContext();
 
-const FilterName = ({ children }) => {
+const ContextProvider = ({ children }) => {
     
 
     useEffect(() => {
         // localStorage.setItem('loginStatus', login);
-    }, [login]);
+    }, []);
 
     return (
         <OurContext.Provider value={{
@@ -19,4 +19,4 @@ const FilterName = ({ children }) => {
     )
 }
 
-export default FilterName
+export default ContextProvider
