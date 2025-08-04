@@ -3,7 +3,7 @@ import './App.css'
 import Home from './pages/Home'
 import About from './pages/About'
 import Contact from './pages/Contact'
-import AllDoctors from './pages/AllDoctors'
+// import AllDoctors from './pages/AllDoctors'
 import Login from './pages/Login'
 import Doctor from './pages/Doctor'
 import Header from './components/header/Header'
@@ -21,7 +21,7 @@ function App() {
           <Route path='/' element={<Home/>}/>
           <Route path='/about' element={<About/>}/>
           <Route path='/contact' element={<Contact/>}/>
-          <Route path='/allDoctors' element={<AllDoctors/>}/>
+          {/* <Route path='/allDoctors' element={<AllDoctors/>}/> */}
           <Route path='/login' element={<Login/> }/>
           <Route path='/doctor/:id' element={<Doctor/>}/>
           <Route path='/my-appointments' element={<Myappointments/>}/>
