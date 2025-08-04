@@ -1,11 +1,10 @@
-import React from 'react'
+import React from 'react';
+import Doctor from '../components/Doctorcard/Doctor';
 
-const AllDoctors = () => {
-    return (
-        <div>
-            all doctor page
-        </div>
-    )
+export default function AllDoctors() {
+  return (
+    <div>
+      <Doctor />
+    </div>
+  );
 }
-
-export default AllDoctors
