@@ -10,7 +10,7 @@ const Header = () => {
   const [dropdownOpen, setDropdownOpen] = useState(false);
 
   // ✳️ بدل ده لما تخلصوا جزء الـ login: خليه يجي من context أو localStorage
-  const isLoggedIn = true;
+  const isLoggedIn = false;
 
   return (
     <nav className="header">
@@ -24,8 +24,7 @@ const Header = () => {
               fill="none"
               stroke="currentColor"
               viewBox="0 0 24 24"
-              xmlns="http://www.w3.org/2000/svg"
-            >
+              xmlns="http://www.w3.org/2000/svg">
               <path
                 strokeLinecap="round"
                 strokeLinejoin="round"
@@ -116,8 +115,7 @@ const Header = () => {
           {!isLoggedIn && (
             <button
               onClick={() => setIsOpen(false)}
-              className="create-account-btn full-width"
-            >
+              className="create-account-btn full-width">
               Create account
             </button>
           )}

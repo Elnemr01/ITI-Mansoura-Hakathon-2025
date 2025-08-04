@@ -2,17 +2,62 @@ import React, { useState } from "react";
 import "./pageStyle/loginPage.css";
 
 const Login = () => {
+  let users = [];
   const [isLogin, setIsLogin] = useState(false);
   const [data, SetData] = useState({
     name: null,
     email: null,
     password: null,
   });
+  const [errorMessages, setErrorMessages] = useState({
+    nameErr: null,
+    passErr: null,
+  });
+
+  function inputHandler(e) {
+    const inputName = e.target.id;
+    const inputValue = e.target.value;
+
+    if (inputName === "name") {
+      SetData((data) => ({ ...data, name: inputValue }));
+      setErrorMessages((errs) => ({
+        ...errs,
+        nameErr:
+          inputValue.length < 6 || inputValue.length > 20
+            ? "name must contain between 6 to 20 chars"
+            : null,
+      }));
+    } else if (inputName === "password") {
+      SetData((data) => ({ ...data, password: inputValue }));
+      setErrorMessages((errs) => ({
+        ...errs,
+        passErr: !inputValue.match(
+          /^(?=.*[a-z])(?=.*\d)(?=.*[!@#$%^&*()_+{}[\]:;"'<>,.?/~`\\|-]).{5,}$/
+        )
+          ? "password must be at least 5 chars and contain letters, digits and special chars"
+          : null,
+      }));
+    } else if (inputName === "email") {
+      SetData((data) => ({ ...data, email: inputValue }));
+    }
+  }
 
   function loginPageHandler(e) {
     e.preventDefault();
     setIsLogin((state) => !state);
   }
+
+  // function Onsubmit(e) {
+  //   e.preventDefault();
+  //   if (!errorMessages.nameErr || !errorMessages.passErr) return null;
+
+  //   if (isLogin) {
+
+  //   }
+  //   else {
+
+  //   }
+  // }
 
   return (
     <div className="login-page">
@@ -29,10 +74,11 @@ const Login = () => {
                 type="text"
                 id="name"
                 value={data.name}
-                onChange={(e) =>
-                  SetData((data) => ({ ...data, name: e.target.value }))
-                }
+                onChange={inputHandler}
               />
+              {errorMessages.nameErr ? (
+                <div className="error-msg">{errorMessages.nameErr}</div>
+              ) : null}
             </div>
           )}
           <div className="form-group">
@@ -52,10 +98,11 @@ const Login = () => {
               type="password"
               id="password"
               value={data.password}
-              onChange={(e) =>
-                SetData((data) => ({ ...data, password: e.target.value }))
-              }
+              onChange={inputHandler}
             />
+            {errorMessages.passErr ? (
+              <div className="error-msg">{errorMessages.passErr}</div>
+            ) : null}
           </div>
           <button className="form-btn">
             {isLogin ? "Login" : "Create account"}
