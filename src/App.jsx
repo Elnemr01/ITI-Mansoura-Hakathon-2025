@@ -11,13 +11,12 @@ import Footer from './components/footer/Footer'
 import Myappointments from './pages/Myappointments.jsx'
 import Profile from './pages/Profile'
 
+
 function App() {
-
-
   return (
-    <div className="App">
-      <div className="container">
-        <Header/>
+    <div className="App flex flex-col min-h-screen">
+      <Header />
+      <main className="flex-grow container pt-[80px] pb-[80px] mx-auto">
         <Routes>
           <Route path='/' element={<Home/>}/>
           <Route path='/about' element={<About/>}/>
@@ -28,10 +27,11 @@ function App() {
           <Route path='/my-appointments' element={<Myappointments/>}/>
           <Route path='/my-profile' element={<Profile/>}/>
         </Routes>
-        <Footer/>
-      </div>
+      </main>
+
+      <Footer />
     </div>
-  )
+  );
 }
 
-export default App
+export default App;

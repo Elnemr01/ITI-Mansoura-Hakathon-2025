@@ -1,12 +1,11 @@
-import Speciality from '../components/Speciality/Speciality';
+import React from 'react'
 
-function Home() {
-  return (
-    <>
-      {/* باقي الصفحة */}
-      <Speciality />
-    </>
-  );
+const Home = () => {
+    return (
+        <div>
+            home page
+        </div>
+    )
 }
-export default Home
 
+export default Home
