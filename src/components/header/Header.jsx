@@ -36,7 +36,7 @@
                 </Link>
             </li>
             <li>
-                <Link to="/all-doctors" className="hover:text-blue-600 transition">
+                <Link to="/allDoctors" className="hover:text-blue-600 transition">
                 All Doctors
                 </Link>
             </li>
