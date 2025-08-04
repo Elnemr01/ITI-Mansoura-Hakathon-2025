@@ -5,16 +5,16 @@ import App from './App.jsx'
 import { BrowserRouter } from 'react-router'
 import { Provider } from 'react-redux'
 import { store } from './reduxToolkit/Store.jsx'
-import ContextProvider from './contextAPI/GlobalVars.jsx'
+import ContextProject from './contextAPI/FilterName.jsx'
 
 createRoot(document.getElementById('root')).render(
   <StrictMode>
     <Provider store={store}>
-      <ContextProvider>
-        <BrowserRouter>
-          <App />
-        </BrowserRouter>
-      </ContextProvider>
+        <ContextProject>
+          <BrowserRouter>
+            <App />
+          </BrowserRouter>
+        </ContextProject>
     </Provider>
   </StrictMode>,
 )

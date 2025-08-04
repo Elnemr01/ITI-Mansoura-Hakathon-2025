@@ -1,0 +1,28 @@
+.docCard {
+    @apply rounded-[10px] border-[1.5px] border-[#eee] overflow-hidden 
+    transition duration-300 block;
+}
+
+.docCard:hover {
+    @apply -translate-y-[10px];
+}
+
+.docCard .image {
+    @apply bg-[rgb(234_239_255)];
+}
+
+.docCard .available {
+    @apply px-[10px] text-green-600 text-base font-medium flex items-center gap-[10px] capitalize mt-[15px];
+}
+
+.docCard .available p:first-child {
+    @apply w-[10px] aspect-square rounded-full bg-green-600;
+}
+
+.docCard .name {
+    @apply px-[10px] my-[2px];
+}
+
+.docCard .speciality {
+    @apply text-[12px] text-gray-500 px-[10px] mb-[10px];
+}
