@@ -11,7 +11,6 @@ import Footer from './components/footer/Footer'
 import Myappointments from './pages/Myappointments.jsx'
 import Profile from './pages/Profile'
 
-
 function App() {
 
 
