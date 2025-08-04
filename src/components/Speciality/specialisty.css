@@ -1,0 +1,23 @@
+section {
+    @apply mt-8 mb-20;
+}
+
+section .specialistyData {
+    @apply mt-4 flex gap-[0.875rem] justify-center items-center flex-wrap;
+}
+
+section .specialistyData a {
+    @apply transition duration-300;
+}
+
+section .specialistyData a:hover {
+    @apply -translate-y-[12px];
+}
+
+section .specialistyData img {
+    @apply max-w-[85px] mx-auto;
+}
+
+section .specialistyData .specialistyName {
+    @apply text-center text-sm text-[#504e4e];
+}

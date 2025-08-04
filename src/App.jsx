@@ -3,9 +3,9 @@ import "./App.css";
 import Home from "./pages/Home";
 import About from "./pages/About";
 import Contact from "./pages/Contact";
+import AllDoctors from "./pages/AllDoctors";
 import Login from "./pages/Login";
 import Doctor from "./pages/Doctor";
-import AllDoctors from "./pages/AllDoctors";
 import Header from "./components/header/Header";
 import Footer from "./components/footer/Footer";
 import Myappointments from "./pages/Myappointments.jsx";
@@ -27,7 +27,6 @@ function App() {
           <Route path="/my-profile" element={<Profile />} />
         </Routes>
       </main>
-
       <Footer />
     </div>
   );

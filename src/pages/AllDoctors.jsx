@@ -1,5 +1,3 @@
-const AllDoctors = () => {
-  return <div>allDoctors</div>;
-};
-
-export default AllDoctors;
+export default function AllDoctors() {
+  return <h1>All Doctors Page</h1>;
+}
