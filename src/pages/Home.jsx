@@ -1,9 +1,10 @@
 import React from 'react'
+import Loginsec from '../components/Login/Loginsection'
 
 const Home = () => {
     return (
-        <div>
-            home page
+        <div className='Home'>
+            <Loginsec/>
         </div>
     )
 }
