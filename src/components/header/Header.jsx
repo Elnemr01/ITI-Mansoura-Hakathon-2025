@@ -9,9 +9,7 @@ const Header = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [dropdownOpen, setDropdownOpen] = useState(false);
 
-  // ✳️ بدل ده لما تخلصوا جزء الـ login: خليه يجي من context أو localStorage
-  const isLoggedIn = true;
-
+  const isLoggedIn = false; //local storage needed. 
   return (
     <nav className="header">
       <div className="header-container">
@@ -57,7 +55,6 @@ const Header = () => {
           )}
         </ul>
 
-        {/* ✅ لو المستخدم سجل دخول، نعرض صورة البروفايل والسهم */}
         {isLoggedIn ? (
           <div className="simple-profile-dropdown">
             <FaUserCircle className="plain-profile-icon" />
@@ -75,7 +72,9 @@ const Header = () => {
           </div>
         ) : (
           <div className="create-account-desktop">
-            <button className="create-account-btn">Create account</button>
+            <Link to="/login" className="create-account-btn">
+              Create account
+            </Link>
           </div>
         )}
       </div>
@@ -114,12 +113,13 @@ const Header = () => {
           </ul>
 
           {!isLoggedIn && (
-            <button
+            <Link
+              to="/login"
               onClick={() => setIsOpen(false)}
               className="create-account-btn full-width"
             >
               Create account
-            </button>
+            </Link>
           )}
         </div>
       )}
