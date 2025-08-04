@@ -1,12 +1,13 @@
-import React from 'react'
+import React, { useState } from "react";
+import "./pageStyle/loginPage.css";
 
 const Login = () => {
-    return (
-        <div>
-            login page
-        </div>
-    )
-}
+  const [isLogin, setIsLogin] = useState(false);
+  const [data, SetData] = useState({
+    name: null,
+    email: null,
+    password: null,
+  });
 
   function loginPageHandler(e) {
     e.preventDefault();

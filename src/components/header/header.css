@@ -1,3 +1,4 @@
+/* ====== Header Base Styles ====== */
 .header {
   background-color: white;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
@@ -18,6 +19,7 @@
   height: auto;
 }
 
+/* ====== Menu Button for Mobile ====== */
 .menu-button {
   background: none;
   border: none;
@@ -30,6 +32,7 @@
   height: 24px;
 }
 
+/* ====== Nav Links ====== */
 .nav-links {
   display: none;
 }
@@ -50,6 +53,7 @@
   color: #2563eb;
 }
 
+/* ====== Create Account ====== */
 .create-account-desktop {
   display: none;
 }
@@ -68,6 +72,7 @@
   opacity: 0.9;
 }
 
+/* ====== Mobile Styles ====== */
 .mobile-menu {
   padding: 0 1.5rem 1rem;
 }
@@ -91,27 +96,27 @@
   margin-top: 1rem;
 }
 
-/* ------------------ Profile Dropdown ------------------ */
-
+/* ====== Profile Dropdown (Logged In) ====== */
 .simple-profile-dropdown {
   display: flex;
   align-items: center;
   cursor: default;
   position: relative;
-  gap: 6px;
+  gap: 8px;
 }
 
 .plain-profile-icon {
-  font-size: 45px;
+  font-size: 42px;   /* صورة البروفايل مكبرة */
   color: #333;
 }
 
 .plain-arrow-icon {
-  font-size: 28px;
+  font-size: 32px;   /* السهم مكبر */
   color: #333;
   cursor: pointer;
 }
 
+/* ====== Dropdown Menu ====== */
 .dropdown-menu {
   position: absolute;
   top: 110%;
@@ -145,6 +150,7 @@
   background-color: #f3f4f6;
 }
 
+/* ====== Media Query for Desktop ====== */
 @media (min-width: 768px) {
   .nav-links {
     display: flex;
