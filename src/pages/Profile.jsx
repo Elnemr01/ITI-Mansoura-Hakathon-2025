@@ -144,9 +144,9 @@ const Profile = ({ userData }) => {
             {editable ? <button onClick={() => handleAfterEdit()}>save information</button>
                 : <button onClick={() => setEditable(!editable)}>edit</button>}
         </div>
-      </div>
-    
-  );
+    //   </div>
+
+    );
 };
 
 export default Profile;
