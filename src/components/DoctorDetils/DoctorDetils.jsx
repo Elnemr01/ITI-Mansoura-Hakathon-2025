@@ -5,13 +5,13 @@ const DoctorDetils = ({ doctors }) => {
         <>
             <div className="doctor">
                 <div className="doctor-image">
-                    <img src={doctors.image} alt="" />
+                    <img src={doctors.image} alt="check connection" loading="lazy" />
                 </div>
 
                 <div className="doctor-info">
                     <div className="flex gap-2">
                         <h1 className="doctor-name">Dr. {doctors.name}</h1>
-                        <img src={assets.verified_icon} alt="" />
+                        <img src={assets.verified_icon} alt="check connection" loading="lazy"/>
                     </div>
 
                     <div className="doctor-degree">
@@ -21,7 +21,7 @@ const DoctorDetils = ({ doctors }) => {
 
                     <div>
                         <p className="about-title">
-                            About <img className="w-3" src={assets.info_icon} alt="" />
+                            About <img className="w-3" src={assets.info_icon} alt="check connection" loading="lazy"/>
                         </p>
                         <p className="about-text">{doctors.about}</p>
                         <p className="fee-text">Appointment fee: <span className="fee-amount">${doctors.fees}</span></p>
