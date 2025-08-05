@@ -1,0 +1,37 @@
+.goLogin {
+    @apply flex items-center bg-[rgb(95_111_255)] rounded-[15px] text-white;
+}
+
+@media (max-width: 1024px) {
+    .goLogin {
+    @apply flex-col;
+    }
+}
+
+.goLogin .text {
+    @apply px-[50px] py-[100px];
+}
+
+.goLogin .text h2 {
+    @apply text-[3rem] leading-[1.3] font-medium;
+}
+
+@media (max-width: 992px) {
+    .goLogin .text h2 {
+    @apply text-[2rem];
+    }
+}
+
+.goLogin .text a {
+    @apply inline-block px-7 py-[0.875rem] bg-white text-black rounded-[60px] mt-4 capitalize text-sm;
+}
+
+.goLogin .image {
+    @apply max-w-[400px];
+}
+
+@media (max-width: 640px) {
+    .goLogin .image {
+    @apply hidden;
+    }
+}

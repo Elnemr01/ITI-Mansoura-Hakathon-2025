@@ -1,171 +1,39 @@
-/* ====== Header Base Styles ====== */
+.active {
+    font-weight: bold;
+}
+.active hr{
+    display: block !important
+}
+.link_active{
+    @apply w-[50%] m-auto  border border-blue-500 hidden mt-1;
+}
 .header {
-  background-color: white;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
-  position: sticky;
-  top: 0;
-  z-index: 50;
+    @apply w-full border-b border-gray-400 bg-white py-5 mb-7 relative z-50 ; 
 }
-
-.header-container {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  padding: 1rem 1.5rem;
+.header_desktop {
+    @apply flex justify-between items-center ;
 }
-
-.header-logo {
-  width: 160px;
-  height: auto;
+.header_desktop_ul {
+    @apply hidden lg:flex gap-10 text-sm font-medium ;
 }
-
-/* ====== Menu Button for Mobile ====== */
-.menu-button {
-  background: none;
-  border: none;
-  color: #1f2937;
-  cursor: pointer;
+.header_links {
+    @apply cursor-pointer transition-colors duration-300 hover:text-blue-500 ;
 }
-
-.menu-icon {
-  width: 24px;
-  height: 24px;
+.header_desktop_btn {
+    @apply hidden lg:block  ;
 }
-
-/* ====== Nav Links ====== */
-.nav-links {
-  display: none;
+.btn_primary{
+    @apply py-3 px-7 bg-blue-500 text-white rounded-3xl text-sm hover:bg-blue-600 transition
 }
-
-.nav-links li {
-  display: inline-block;
-  margin-left: 2rem;
+.mobile_menu {
+    @apply  fixed top-0 right-0 h-full w-full bg-white  transform transition-transform duration-300 ease-in-out z-40 ;
 }
-
-.nav-links a {
-  color: #374151;
-  font-weight: bold;
-  text-decoration: none;
-  transition: color 0.3s;
+.mobile-links{
+    @apply text-lg
 }
-
-.nav-links a:hover {
-  color: #2563eb;
+.mobile_header {
+    @apply flex justify-between items-center px-4 py-4 border-b border-gray-400 ;
 }
-
-/* ====== Create Account ====== */
-.create-account-desktop {
-  display: none;
-}
-
-.create-account-btn {
-  background: linear-gradient(to right, #8b5cf6, #3b82f6);
-  color: white;
-  padding: 0.5rem 1.25rem;
-  border-radius: 9999px;
-  border: none;
-  cursor: pointer;
-  transition: opacity 0.3s;
-}
-
-.create-account-btn:hover {
-  opacity: 0.9;
-}
-
-/* ====== Mobile Styles ====== */
-.mobile-menu {
-  padding: 0 1.5rem 1rem;
-}
-
-.mobile-nav-links {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 1rem;
-  font-weight: bold;
-  color: #374151;
-}
-
-.mobile-nav-links a {
-  text-decoration: none;
-  color: inherit;
-}
-
-.full-width {
-  width: 100%;
-  margin-top: 1rem;
-}
-
-/* ====== Profile Dropdown (Logged In) ====== */
-.simple-profile-dropdown {
-  display: flex;
-  align-items: center;
-  cursor: default;
-  position: relative;
-  gap: 8px;
-}
-
-.plain-profile-icon {
-  font-size: 42px;   /* صورة البروفايل مكبرة */
-  color: #333;
-}
-
-.plain-arrow-icon {
-  font-size: 32px;   /* السهم مكبر */
-  color: #333;
-  cursor: pointer;
-}
-
-/* ====== Dropdown Menu ====== */
-.dropdown-menu {
-  position: absolute;
-  top: 110%;
-  right: 0;
-  background: white;
-  border: 1px solid #ddd;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
-  border-radius: 6px;
-  overflow: hidden;
-  min-width: 160px;
-  z-index: 1000;
-  display: flex;
-  flex-direction: column;
-}
-
-.dropdown-menu a,
-.dropdown-menu button {
-  padding: 0.75rem 1rem;
-  text-align: left;
-  background: none;
-  border: none;
-  width: 100%;
-  text-decoration: none;
-  color: #333;
-  font-size: 14px;
-  cursor: pointer;
-}
-
-.dropdown-menu a:hover,
-.dropdown-menu button:hover {
-  background-color: #f3f4f6;
-}
-
-/* ====== Media Query for Desktop ====== */
-@media (min-width: 768px) {
-  .nav-links {
-    display: flex;
-    align-items: center;
-  }
-
-  .create-account-desktop {
-    display: block;
-  }
-
-  .mobile-toggle {
-    display: none;
-  }
-
-  .mobile-menu {
-    display: none;
-  }
+.header_mobile_ul {
+    @apply flex justify-center items-center flex-col gap-5 p-4 text-sm font-medium mt-8 ;
 }

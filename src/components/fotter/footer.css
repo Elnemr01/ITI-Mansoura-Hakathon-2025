@@ -1,0 +1,44 @@
+.footer-container {
+    @apply mt-40 flex items-start flex-col md:flex-row md:justify-between ;
+}
+
+.footer-left {
+    @apply mb-11 md:w-[50%];
+}
+
+.footer-logo {
+    @apply w-40 mb-5;
+}
+
+.footer-description {
+    @apply text-sm text-gray-500 w-full md:w-[80%];
+}
+
+.footer-column {
+    @apply flex flex-col gap-2 mb-11;
+}
+
+.footer-title {
+    @apply mb-5 font-medium text-xl text-gray-700;
+}
+
+.footer-list li {
+    @apply text-gray-500 cursor-pointer mb-2;
+}
+
+
+.footer-contact {
+    @apply mb-11;
+}
+
+.footer-contact p {
+    @apply text-gray-500;
+}
+
+.footer-divider {
+    @apply border my-5;
+}
+
+.footer-copy {
+    @apply text-center mb-3 text-sm;
+}
