@@ -5,7 +5,6 @@ import { Link, NavLink } from "react-router-dom";
 import { OurContext } from "../../contextAPI/FilterName";
 import Account from "../account/Account";
 const Header = () => {
-<<<<<<< HEAD
   // added by elnemr
   const { setFilter, login } = useContext(OurContext);
 
@@ -23,12 +22,6 @@ const Header = () => {
       setFilter('');
   }
   // ----------------------------------------------
-=======
-  const [isOpen, setIsOpen] = useState(false);
-  const [dropdownOpen, setDropdownOpen] = useState(false);
-
-  const isLoggedIn = false; //local storage needed. 
->>>>>>> 43d11219dc012cf1a55b4acb006bcec74abd52a8
   return (
     <header className="header">
       <div className="header_desktop">
@@ -48,7 +41,6 @@ const Header = () => {
           }
         </ul>
 
-<<<<<<< HEAD
         {/* Button */}
         {
           login ? '' : <Link to={'/login'}>
@@ -91,74 +83,6 @@ const Header = () => {
           <button onClick={() => setMenuOpen(false)}>
             <img src={assets.cross_icon} className="h-7" alt="close icon" />
           </button>
-=======
-        {isLoggedIn ? (
-          <div className="simple-profile-dropdown">
-            <FaUserCircle className="plain-profile-icon" />
-            <span onClick={() => setDropdownOpen(!dropdownOpen)}>
-              <IoIosArrowDown className="plain-arrow-icon" />
-            </span>
-
-            {dropdownOpen && (
-              <div className="dropdown-menu">
-                <Link to="/profile">My Profile</Link>
-                <Link to="/appointments">My Appointment</Link>
-                <button onClick={() => console.log("Logout")}>Logout</button>
-              </div>
-            )}
-          </div>
-        ) : (
-          <div className="create-account-desktop">
-            <Link to="/login" className="create-account-btn">
-              Create account
-            </Link>
-          </div>
-        )}
-      </div>
-
-      {isOpen && (
-        <div className="mobile-menu">
-          <ul className="mobile-nav-links">
-            <li>
-              <Link to="/" onClick={() => setIsOpen(false)}>
-                Home
-              </Link>
-            </li>
-            <li>
-              <Link to="/all-doctors" onClick={() => setIsOpen(false)}>
-                All Doctors
-              </Link>
-            </li>
-            <li>
-              <Link to="/about" onClick={() => setIsOpen(false)}>
-                About
-              </Link>
-            </li>
-            <li>
-              <Link to="/contact" onClick={() => setIsOpen(false)}>
-                Contact
-              </Link>
-            </li>
-
-            {!isLoggedIn && (
-              <li>
-                <Link to="/login" onClick={() => setIsOpen(false)}>
-                  Login
-                </Link>
-              </li>
-            )}
-          </ul>
-
-          {!isLoggedIn && (
-            <Link
-              to="/login"
-              onClick={() => setIsOpen(false)}
-              className="create-account-btn full-width"
-            >
-              Create account
-            </Link>
-          )}
->>>>>>> 43d11219dc012cf1a55b4acb006bcec74abd52a8
         </div>
         <ul className="header_mobile_ul">
           {
