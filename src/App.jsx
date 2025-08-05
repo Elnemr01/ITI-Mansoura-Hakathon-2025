@@ -16,20 +16,22 @@ function App() {
     <div className="App">
       <div className="container">
         <Header />
-        <Routes>
-          <Route path="/" element={<Home />} />
-          <Route path="/about" element={<About />} />
-          <Route path="/contact" element={<Contact />} />
-          <Route path="/allDoctors" element={<AllDoctors />} />
-          <Route path="/login" element={<Login />} />
-          <Route path="/doctor/:id" element={<Doctor />} />
-          <Route path="/my-appointments" element={<Myappointments />} />
-          <Route path="/profile" element={<Profile />} />
-        </Routes>
-      </main>
-      <Footer />
+        <main>
+          <Routes>
+            <Route path="/" element={<Home />} />
+            <Route path="/about" element={<About />} />
+            <Route path="/contact" element={<Contact />} />
+            <Route path="/allDoctors" element={<AllDoctors />} />
+            <Route path="/login" element={<Login />} />
+            <Route path="/doctor/:id" element={<Doctor />} />
+            <Route path="/my-appointments" element={<Myappointments />} />
+            <Route path="/profile" element={<Profile />} />
+          </Routes>
+        </main>
+        <Footer />
+      </div>
     </div>
-  )
+  );
 }
 
-export default App
+export default App;
