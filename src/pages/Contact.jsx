@@ -1,5 +1,5 @@
 import React from 'react'
-import "./pageStyle/contactPageStyle.css"
+import "./pageStyle/contactPage.css"
 import CommonTitle from '../components/commonTitle/CommonTitle'
 import { assets } from '../assets/assets_frontend/assets'
 

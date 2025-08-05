@@ -52,6 +52,12 @@ form .sub-title {
   width: 100%;
 }
 
+.form-group .error-msg {
+  font-size: 12px;
+  color: red;
+  margin-top: 3px;
+}
+
 form .form-btn {
   color: white;
   background-color: var(--purple-color);

@@ -1,0 +1,18 @@
+.allDoctorsPage .action {
+    @apply pb-3.5 text-sm text-gray-600;
+}
+
+.allDoctorsPage .content {
+    @apply flex gap-8;
+}
+
+@media (width <= 768px) {
+    .allDoctorsPage .content {
+        @apply flex-col;
+    }
+}
+
+.allDoctorsPage .content .allDoctors {
+    @apply grid gap-4 flex-1;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+}

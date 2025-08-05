@@ -1,22 +1,20 @@
-import React from 'react';
-import Speciality from '../components/Speciality/Speciality';
-import Hero from '../components/hero/hero';
-// import Hero from 'src/components/Hero/.jsx';
-// import TopDoctors from '../components/topDoctors/TopDoctors';
-// import GoLoginSection from '../components/goLoginSection/GoLoginSection';
 
+
+import GoLoginSection from '../components/goLoginSection/GoLoginSection'
+import Hero from '../components/hero/Hero'
+import Specialisty from '../components/specialistySection/Specialisty'
+import TopDoctors from '../components/topDoctors/TopDoctors'
 
 
 const Home = () => {
-  return (
-    <div className='home'>
-      <Hero />
-      <Speciality />
+    return (
+        <div className='home'>
+            <Hero/>
+            <Specialisty/>
+            <TopDoctors/>
+            <GoLoginSection/>
+        </div>
+    )
+}
 
-      {/* <TopDoctors /> */}
-      {/* <GoLoginSection /> */}
-    </div>
-  );
-};
-
-export default Home;
+export default Home

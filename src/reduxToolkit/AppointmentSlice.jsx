@@ -1,16 +1,22 @@
 import { createSlice } from "@reduxjs/toolkit";
 
-
-let appointmentSlice= createSlice({
+let appointmentSlice =createSlice({
     initialState : [],
-    name: 'appointmentSlice',
+    name :'appointmentSlice',
     reducers : {
-        addAppointment: (state,action)=> {
+        addAppointment : (state,action)=> {
+            state.push(action.payload);
+            return state;
+        },
 
+        cancelAppointment : (state,action)=> {
+            state=state.filter((e)=> e.id!==action.payload);
+            return state;
         },
     }
-
 })
 
-export let {addAppointment}=appointmentSlice.actions;
+
+
 export default appointmentSlice.reducer;
+export let {addAppointment,cancelAppointment}=appointmentSlice.actions;

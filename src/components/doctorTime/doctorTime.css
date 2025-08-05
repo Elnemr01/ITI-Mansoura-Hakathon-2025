@@ -1,0 +1,28 @@
+.cont {
+  @apply mt-8 font-medium text-gray-500 lg:ml-[300px] m-auto p-4;
+}
+.days_container{
+    @apply flex items-center gap-4 overflow-x-scroll scrollbar-hide mt-4 md:ml-6
+}
+.time_container{
+    @apply flex items-center gap-3 overflow-x-scroll scrollbar-hide mt-4 md:ml-6
+}
+.day-item {
+  @apply text-center py-6 min-w-16 rounded-full cursor-pointer border border-[#DDDDDD] px-4;
+}
+
+.day-item-active {
+  @apply bg-blue-600 border-blue-600 text-white;
+}
+
+.slot-item {
+  @apply text-sm font-light flex-shrink-0 px-5 py-2 rounded-full cursor-pointer text-[#949494] border border-[#B4B4B4];
+}
+
+.slot-item-active {
+  @apply bg-blue-600 text-white border-blue-600;
+}
+
+.book-button {
+  @apply ml-2 bg-blue-600 text-white text-sm font-light px-20 py-3 rounded-full my-6 block;
+}

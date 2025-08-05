@@ -1,0 +1,73 @@
+.appointmentCard {
+@apply flex gap-4 border-b border-[#eee] py-4;
+}
+
+@media (max-width: 640px) {
+.appointmentCard {
+    @apply flex-col;
+}
+}
+
+.appointmentCard .firstPart {
+@apply flex gap-4 flex-1;
+}
+
+.appointmentCard .docImage {
+@apply max-w-[150px] bg-[#eaefff];
+}
+
+.appointmentCard .appointmentData .name {
+@apply font-medium text-[1.1rem];
+}
+
+.appointmentCard .appointmentData .speciality {
+@apply text-sm text-gray-500;
+}
+
+.appointmentCard .appointmentData .address,
+.appointmentCard .appointmentData .dateAndTime span {
+@apply capitalize text-[15px] text-[#464646] font-medium mt-1;
+}
+
+.appointmentCard .appointmentData .address1,
+.appointmentCard .appointmentData .address2,
+.appointmentCard .appointmentData .dateAndTime {
+@apply text-sm text-gray-500;
+}
+
+.appointmentCard .appointmentData .dateAndTime {
+@apply mt-1;
+}
+
+.appointmentCard .buttons {
+@apply flex flex-col justify-end gap-[10px];
+}
+
+@media (max-width: 640px) {
+.appointmentCard .buttons {
+    @apply items-end;
+}
+}
+
+.appointmentCard .buttons button {
+@apply w-full border border-[#eee] px-4 py-2 text-sm capitalize text-[#9E9E9E] transition duration-300 rounded-[3px];
+}
+
+@media (max-width: 640px) {
+.appointmentCard .buttons button {
+    @apply w-1/2;
+}
+}
+
+.appointmentCard .buttons button:first-child:hover {
+@apply text-white bg-[#5f6fff];
+}
+
+.appointmentCard .buttons button:last-child:hover {
+@apply text-white bg-red-500;
+}
+
+/* heading in my-appointment page */
+.myAppointments h2 {
+@apply capitalize text-[1.1rem] font-medium text-gray-600 py-[10px] border-b border-[#eee];
+}

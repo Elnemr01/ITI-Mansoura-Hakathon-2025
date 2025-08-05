@@ -1,20 +1,17 @@
-import { StrictMode } from 'react'
 import { createRoot } from 'react-dom/client'
 import './index.css'
 import App from './App.jsx'
 import { BrowserRouter } from 'react-router'
+import FilterName from './contextAPI/FilterName.jsx'
 import { Provider } from 'react-redux'
-import { store } from './reduxToolkit/Store.jsx'
-import ContextProject from './contextAPI/FilterName.jsx'
+import { store } from './reduxToolKit/Store.jsx'
 
 createRoot(document.getElementById('root')).render(
-  <StrictMode>
+  <BrowserRouter>
     <Provider store={store}>
-        <ContextProject>
-          <BrowserRouter>
-            <App />
-          </BrowserRouter>
-        </ContextProject>
+      <FilterName>
+        <App />
+      </FilterName>
     </Provider>
-  </StrictMode>,
+  </BrowserRouter>
 )
