@@ -1,11 +1,13 @@
-import React from 'react'
+import React from 'react';
+import Doctor from '../components/Doctorcard/Doctor';
 
 const Home = () => {
-    return (
-        <div>
-            home page
-        </div>
-    )
-}
+  return (
+    <div>
+      <h1>Home Page</h1>
+      <Doctor />
+    </div>
+  );
+};
 
-export default Home
+export default Home;
