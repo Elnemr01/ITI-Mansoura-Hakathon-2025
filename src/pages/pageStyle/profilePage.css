@@ -1,0 +1,57 @@
+.profile .picture {
+    @apply max-w-[150px];
+}
+
+.profile .name {
+    @apply my-4 py-3 border-b border-gray-500;
+}
+
+.profile .name h1 {
+    @apply text-3xl font-medium;
+}
+
+.profile .name input {
+    @apply text-3xl font-medium;
+}
+
+.profile .infoTitle h2 {
+    @apply uppercase underline text-sm text-gray-600 my-3.5;
+}
+
+.profile .infoTitle .data {
+    @apply flex gap-6 mt-[5px];
+}
+
+.profile label {
+    @apply capitalize text-sm font-medium text-gray-600 mr-6;
+}
+
+.profile p,
+.profile .gender select,
+.profile .gender select option,
+.profile .birthday input {
+    @apply text-gray-500;
+}
+
+/* email field */
+.profile .contactInfo .email p {
+    @apply text-[#5f6fff];
+}
+
+/* phone field */
+.profile .contactInfo .phone {
+    @apply my-[5px];
+}
+
+.profile .contactInfo .phone p {
+    @apply text-[#5f6fff];
+}
+
+/* ----------buttons---------- */
+.profile button {
+    @apply px-5 py-2.5 rounded-full border border-[#5f6fff] text-base capitalize font-normal transition mt-8;
+}
+
+.profile button:hover {
+    @apply text-white bg-[#5f6fff];
+}

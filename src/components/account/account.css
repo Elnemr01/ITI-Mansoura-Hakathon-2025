@@ -1,0 +1,23 @@
+.account-container {
+  @apply flex items-center gap-4;
+}
+
+.profile-trigger {
+  @apply flex items-center gap-2 cursor-pointer relative;
+}
+
+.profile-img {
+  @apply w-8 rounded-full;
+}
+
+.dropdown-container {
+  @apply absolute top-0 right-0 pt-14 text-base font-medium text-gray-600 z-20;
+}
+
+.dropdown-box {
+  @apply min-w-48 bg-gray-50 rounded flex flex-col gap-4 p-4;
+}
+
+.dropdown-item {
+  @apply hover:text-black cursor-pointer;
+}

@@ -1,0 +1,71 @@
+.hero {
+    @apply flex items-end bg-[rgb(95_111_255)] px-16 mt-4 rounded-[10px] text-white;
+}
+
+@media (max-width: 500px) {
+    .hero {
+    @apply px-8;
+    }
+}
+
+@media (max-width: 992px) {
+    .hero {
+    @apply flex-col;
+    }
+}
+
+.hero .text {
+    @apply pt-32 pb-28;
+}
+
+@media (max-width: 992px) {
+    .hero .text {
+    @apply py-8;
+    }
+}
+
+.hero .text h2 {
+    @apply capitalize text-[3rem] font-medium leading-[1.3];
+}
+
+@media (max-width: 992px) {
+    .hero .text h2 {
+    @apply text-[2rem];
+    }
+}
+
+@media (max-width: 500px) {
+    .hero .text h2 {
+    @apply text-[1.25rem];
+    }
+}
+
+.hero .text .info {
+    @apply flex gap-4 items-center my-4;
+}
+
+@media (max-width: 992px) {
+    .hero .text .info {
+    @apply flex-col;
+    }
+}
+
+
+
+.hero .text .info p {
+    @apply text-sm text-white;
+}
+
+.hero .text a {
+    @apply rounded-[50px] bg-white text-black px-[25px] py-[12px] flex items-center gap-2 capitalize text-sm text-[#595959] transition duration-300 w-fit;
+}
+
+@media (max-width: 992px) {
+    .hero .text a {
+    @apply mx-auto;
+    }
+}
+
+.hero .text a:hover {
+    @apply scale-[1.05];
+}

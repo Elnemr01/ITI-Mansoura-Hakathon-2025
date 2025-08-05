@@ -1,9 +1,8 @@
 import React, { useState } from "react";
+import { v4 as uidqueId } from "uuid";
 import "./pageStyle/loginPage.css";
 
 const Login = () => {
-  let users = [];
-
   const [isLogin, setIsLogin] = useState(false);
   const [data, setData] = useState({
     name: "",
@@ -26,29 +25,65 @@ const Login = () => {
 
   function onSubmit(e) {
     e.preventDefault();
-    console.log("sondumbit");
 
-    setErrorMessages(() => ({
-      nameErr:
-        data.name.length < 6 || data.name.length > 20
-          ? "name must contain between 6 to 20 chars"
-          : "",
+    // Step 1: Calculate the errors
+    const nameErr =
+      data.name.length < 6 || data.name.length > 20
+        ? "name must contain between 6 to 20 chars"
+        : "";
 
-      emailErr: data.email.trim().length === 0 ? "this field is required" : "",
+    const emailErr =
+      data.email.trim().length === 0 ? "this field is required" : "";
 
-      passErr: !data.password.match(
-        /^(?=.*[a-z])(?=.*\d)(?=.*[!@#$%^&*()_+{}[\]:;"'<>,.?/~`\\|-]).{5,}$/
-      )
-        ? "password must be at least 5 chars and contain letters, digits and special chars"
-        : "",
-    }));
-
-    if (
-      !errorMessages.nameErr &&
-      !errorMessages.emailErr &&
-      !errorMessages.passErr
+    const passErr = !data.password.match(
+      /^(?=.*[a-z])(?=.*\d)(?=.*[!@#$%^&*()_+{}[\]:;"'<>,.?/~`\\|-]).{5,}$/
     )
-      console.log("cant take user data");
+      ? "password must be at least 5 chars and contain letters, digits and special chars"
+      : "";
+
+    // Step 2: Update the error state
+    setErrorMessages({
+      nameErr,
+      emailErr,
+      passErr,
+    });
+
+    // Step 3: Check if all are valid (no errors)
+    if (!nameErr && !emailErr && !passErr) {
+      // Login handle
+      if (isLogin) {
+        // login code
+      }
+      // Create Account handle
+      else {
+        // Database contains data
+        if (localStorage.getItem("users")) {
+          let isFound = false;
+          let users = JSON.parse(localStorage.getItem("users"));
+          isFound = users.some((user) => user.email === data.email);
+
+          // add user to Database
+          if (!isFound) {
+            users.push({ ...data, id: uidqueId() });
+            localStorage.setItem("users", JSON.stringify(users));
+          }
+          // user already exists
+          else {
+            setTimeout(() => {
+              setIsLogin((login) => !login);
+            }, 2000);
+          }
+        }
+        // intial setting to Database
+        else {
+          localStorage.setItem(
+            "users",
+            JSON.stringify([{ ...data, id: uidqueId() }])
+          );
+        }
+        setData(() => ({ name: "", email: "", password: "" }));
+      }
+    }
   }
 
   return (

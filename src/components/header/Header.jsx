@@ -1,127 +1,109 @@
-import React, { useState } from "react";
-import { Link } from "react-router-dom";
-import { FaUserCircle } from "react-icons/fa";
-import { IoIosArrowDown } from "react-icons/io";
-import logo from "../../assets/assets_frontend/logo.svg";
+import { useContext, useState } from "react";
+import { assets } from "../../assets/assets_frontend/assets";
 import "./header.css";
-
+import { Link, NavLink } from "react-router-dom";
+import { OurContext } from "../../contextAPI/FilterName";
+import Account from "../account/Account";
 const Header = () => {
-  const [isOpen, setIsOpen] = useState(false);
-  const [dropdownOpen, setDropdownOpen] = useState(false);
+  // added by elnemr
+  const { setFilter, login } = useContext(OurContext);
 
-  const isLoggedIn = false; //local storage needed.
+  // ----------------------------------------------
+  const [menuOpen, setMenuOpen] = useState(false);
+  const links = [
+    { to: "/", link: "Home" },
+    { to: "/allDocutors", link: "ALL DOCTORS" },
+    { to: "/about", link: "ABOUT" },
+    { to: "/contact", link: "CONTACT" },
+  ];
+  // added by elnemr
+  const showAll = (to) => {
+    if (to === "/allDocutors") setFilter("");
+  };
+  // ----------------------------------------------
   return (
-    <nav className="header">
-      <div className="header-container">
-        <img src={logo} alt="Logo" className="header-logo" />
+    <header className="header">
+      <div className="header_desktop">
+        {/* Logo */}
+        <img src={assets.logo} alt="Logo" className="w-40" />
 
-        <div className="mobile-toggle">
-          <button onClick={() => setIsOpen(!isOpen)} className="menu-button">
-            <svg
-              className="menu-icon"
-              fill="none"
-              stroke="currentColor"
-              viewBox="0 0 24 24"
-              xmlns="http://www.w3.org/2000/svg">
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                strokeWidth={2}
-                d="M4 6h16M4 12h16M4 18h16"
-              />
-            </svg>
-          </button>
-        </div>
-
-        <ul className="nav-links">
-          <li>
-            <Link to="/">Home</Link>
-          </li>
-          <li>
-            <Link to="/all-doctors">All Doctors</Link>
-          </li>
-          <li>
-            <Link to="/about">About</Link>
-          </li>
-          <li>
-            <Link to="/contact">Contact</Link>
-          </li>
-
-          {!isLoggedIn && (
-            <li>
-              <Link to="/login">Login</Link>
+        {/* Desktop Menu */}
+        <ul className="header_desktop_ul">
+          {links.map((link, idx) => (
+            <li
+              key={idx}
+              className="header_links"
+              onClick={() => showAll(link.to)}>
+              <NavLink to={link.to}>
+                {link.link}
+                <hr className="link_active" />
+              </NavLink>
             </li>
-          )}
+          ))}
         </ul>
 
-        {isLoggedIn ? (
-          <div className="simple-profile-dropdown">
-            <FaUserCircle className="plain-profile-icon" />
-            <span onClick={() => setDropdownOpen(!dropdownOpen)}>
-              <IoIosArrowDown className="plain-arrow-icon" />
-            </span>
+        {/* Button */}
+        {login ? (
+          ""
+        ) : (
+          <Link to={"/login"}>
+            <button className="header_desktop_btn btn_primary">
+              Create Account
+            </button>
+          </Link>
+        )}
 
-            {dropdownOpen && (
-              <div className="dropdown-menu">
-                <Link to="/profile">My Profile</Link>
-                <Link to="/appointments">My Appointment</Link>
-                <button onClick={() => console.log("Logout")}>Logout</button>
-              </div>
-            )}
+        {/* Mobile Menu Button */}
+        {login ? (
+          <div className="flex gap-3">
+            <Account />
+            <button
+              className={`${menuOpen ? "hidden" : ""} lg:hidden p-2 z-50`}
+              onClick={() => setMenuOpen(true)}>
+              <img src={assets.menu_icon} alt="menu" className="h-4" />
+            </button>
           </div>
         ) : (
-          <div className="create-account-desktop">
-            <Link to="/login" className="create-account-btn">
-              Create account
-            </Link>
-          </div>
+          <button
+            className={`${menuOpen ? "hidden" : ""} lg:hidden p-2 z-50`}
+            onClick={() => setMenuOpen(true)}>
+            <img src={assets.menu_icon} alt="menu" className="h-4" />
+          </button>
         )}
       </div>
 
-      {isOpen && (
-        <div className="mobile-menu">
-          <ul className="mobile-nav-links">
-            <li>
-              <Link to="/" onClick={() => setIsOpen(false)}>
-                Home
-              </Link>
+      {/* Mobile Menu */}
+      <div
+        className={`mobile_menu ${
+          menuOpen ? "translate-x-0" : "translate-x-full"
+        }`}>
+        <div className="mobile_header">
+          <img src={assets.logo} alt="logo" className="w-28" />
+          <button onClick={() => setMenuOpen(false)}>
+            <img src={assets.cross_icon} className="h-7" alt="close icon" />
+          </button>
+        </div>
+        <ul className="header_mobile_ul">
+          {links.map((link, idx) => (
+            <li key={idx} className="header_links mobile-links">
+              <NavLink to={link.to} onClick={() => setMenuOpen(false)}>
+                {link.link}
+                <hr className="link_active" />
+              </NavLink>
             </li>
-            <li>
-              <Link to="/all-doctors" onClick={() => setIsOpen(false)}>
-                All Doctors
-              </Link>
-            </li>
-            <li>
-              <Link to="/about" onClick={() => setIsOpen(false)}>
-                About
-              </Link>
-            </li>
-            <li>
-              <Link to="/contact" onClick={() => setIsOpen(false)}>
-                Contact
-              </Link>
-            </li>
-
-            {!isLoggedIn && (
-              <li>
-                <Link to="/login" onClick={() => setIsOpen(false)}>
-                  Login
-                </Link>
-              </li>
-            )}
-          </ul>
-
-          {!isLoggedIn && (
-            <Link
-              to="/login"
-              onClick={() => setIsOpen(false)}
-              className="create-account-btn full-width">
-              Create account
+          ))}
+        </ul>
+        <div className="px-4 flex justify-center">
+          {login ? (
+            ""
+          ) : (
+            <Link to={"/login"}>
+              <button className="btn_primary">Create Account</button>
             </Link>
           )}
         </div>
-      )}
-    </nav>
+      </div>
+    </header>
   );
 };
 

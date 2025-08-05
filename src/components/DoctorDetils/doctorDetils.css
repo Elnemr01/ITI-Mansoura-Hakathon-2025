@@ -1,0 +1,43 @@
+.doctor {
+  @apply flex flex-col md:flex-row justify-between;
+}
+
+.doctor-image {
+  @apply bg-blue-500 md:w-[28%] rounded-lg h-fit;
+}
+
+.doctor-image img {
+  @apply w-full;
+}
+
+.doctor-info {
+  @apply bg-white mt-[-80px] md:mt-0 border border-gray-400 mx-2 md:w-[70%] rounded-lg flex flex-col justify-center p-8;
+}
+
+.doctor-name {
+  @apply text-3xl font-medium text-gray-700;
+}
+
+.doctor-degree {
+  @apply flex items-center gap-2 mt-1 text-gray-600;
+}
+
+.doctor-exp {
+  @apply py-0.5 px-2 border text-xs rounded-full;
+}
+
+.about-title {
+  @apply flex items-center gap-1 text-sm font-medium text-[#262626] mt-3;
+}
+
+.about-text {
+  @apply text-sm text-gray-600 max-w-[700px] mt-1;
+}
+
+.fee-text {
+  @apply text-gray-600 font-medium mt-4;
+}
+
+.fee-amount {
+  @apply text-gray-800;
+}

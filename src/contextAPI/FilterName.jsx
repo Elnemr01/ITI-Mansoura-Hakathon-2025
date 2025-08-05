@@ -3,7 +3,7 @@ import { createContext } from "react";
 
 export let OurContext = createContext();
 
-const ContextProject = ({ children }) => {
+const FilterName = ({ children }) => {
     const [filterName, setFilter] = useState('');
     const [login, setLogin] = useState(() => {
         const saveLogin = localStorage.getItem('loginStatus');
@@ -32,4 +32,4 @@ const ContextProject = ({ children }) => {
     )
 }
 
-export default ContextProject
+export default FilterName

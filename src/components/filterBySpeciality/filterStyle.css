@@ -1,0 +1,31 @@
+.filteration {
+    @apply flex flex-col gap-3.5;
+}
+
+.filteration .filter-btn {
+    @apply text-sm capitalize font-normal cursor-pointer hidden;
+    padding: 5px 10px;
+    width: fit-content;
+    border-radius: 5px;
+    border: 1px solid #eee;
+    pointer-events: none;
+}
+
+@media (width <= 768px) {
+    .filteration .filter-btn {
+        @apply block;
+        pointer-events: all;
+    }
+}
+
+.filteration li {
+    @apply text-sm cursor-pointer md:block;
+    padding: 8px 50px 8px 10px;
+    border-radius: 5px;
+    color: rgb(92 92 92);
+    border: 1px solid rgb(209 213 219);
+}
+
+.filteration li.choicen {
+    @apply bg-indigo-100 text-black;
+}
