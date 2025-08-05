@@ -57,30 +57,26 @@ const Login = () => {
       // Create Account handle
       else {
         // Database contains data
-        if (localStorage.getItem("users")) {
-          let isFound = false;
-          let users = JSON.parse(localStorage.getItem("users"));
-          isFound = users.some((user) => user.email === data.email);
+        let users = JSON.parse(localStorage.getItem("users")) || [];
 
-          // add user to Database
-          if (!isFound) {
-            users.push({ ...data, id: uidqueId() });
-            localStorage.setItem("users", JSON.stringify(users));
-          }
-          // user already exists
-          else {
-            setTimeout(() => {
-              setIsLogin((login) => !login);
-            }, 2000);
-          }
+        let isFound = users.some((user) => user.email === data.email);
+
+        // add user to Database
+        if (!isFound) {
+          let user = { ...data, id: uidqueId() };
+          users.push(user);
+          localStorage.setItem("users", JSON.stringify(users));
+          // current user
+          localStorage.setItem("currentUser", JSON.stringify(user));
         }
-        // intial setting to Database
+        // user already exists
         else {
-          localStorage.setItem(
-            "users",
-            JSON.stringify([{ ...data, id: uidqueId() }])
-          );
+          // go to login
+          setTimeout(() => {
+            setIsLogin(() => true);
+          }, 2000);
         }
+        // Clearing input fields
         setData(() => ({ name: "", email: "", password: "" }));
       }
     }
