@@ -3,66 +3,58 @@ import "./pageStyle/loginPage.css";
 
 const Login = () => {
   let users = [];
+
   const [isLogin, setIsLogin] = useState(false);
-  const [data, SetData] = useState({
-    name: null,
-    email: null,
-    password: null,
+  const [data, setData] = useState({
+    name: "",
+    email: "",
+    password: "",
   });
   const [errorMessages, setErrorMessages] = useState({
-    nameErr: null,
-    passErr: null,
+    nameErr: "",
+    passErr: "",
+    emailErr: "",
   });
-
-  function inputHandler(e) {
-    const inputName = e.target.id;
-    const inputValue = e.target.value;
-
-    if (inputName === "name") {
-      SetData((data) => ({ ...data, name: inputValue }));
-      setErrorMessages((errs) => ({
-        ...errs,
-        nameErr:
-          inputValue.length < 6 || inputValue.length > 20
-            ? "name must contain between 6 to 20 chars"
-            : null,
-      }));
-    } else if (inputName === "password") {
-      SetData((data) => ({ ...data, password: inputValue }));
-      setErrorMessages((errs) => ({
-        ...errs,
-        passErr: !inputValue.match(
-          /^(?=.*[a-z])(?=.*\d)(?=.*[!@#$%^&*()_+{}[\]:;"'<>,.?/~`\\|-]).{5,}$/
-        )
-          ? "password must be at least 5 chars and contain letters, digits and special chars"
-          : null,
-      }));
-    } else if (inputName === "email") {
-      SetData((data) => ({ ...data, email: inputValue }));
-    }
-  }
 
   function loginPageHandler(e) {
     e.preventDefault();
+
     setIsLogin((state) => !state);
+
+    setErrorMessages({ nameErr: "", emailErr: "", passErr: "" });
   }
 
-  // function Onsubmit(e) {
-  //   e.preventDefault();
-  //   if (!errorMessages.nameErr || !errorMessages.passErr) return null;
+  function onSubmit(e) {
+    e.preventDefault();
+    console.log("sondumbit");
 
-  //   if (isLogin) {
+    setErrorMessages(() => ({
+      nameErr:
+        data.name.length < 6 || data.name.length > 20
+          ? "name must contain between 6 to 20 chars"
+          : "",
 
-  //   }
-  //   else {
+      emailErr: data.email.trim().length === 0 ? "this field is required" : "",
 
-  //   }
-  // }
+      passErr: !data.password.match(
+        /^(?=.*[a-z])(?=.*\d)(?=.*[!@#$%^&*()_+{}[\]:;"'<>,.?/~`\\|-]).{5,}$/
+      )
+        ? "password must be at least 5 chars and contain letters, digits and special chars"
+        : "",
+    }));
+
+    if (
+      !errorMessages.nameErr &&
+      !errorMessages.emailErr &&
+      !errorMessages.passErr
+    )
+      console.log("cant take user data");
+  }
 
   return (
     <div className="login-page">
       <div className="form">
-        <form>
+        <form onSubmit={onSubmit}>
           <h2>{isLogin ? "Login" : "Create Account"}</h2>
           <span className="sub-title">
             Please {isLogin ? "log" : "sign up"} to book appointment
@@ -74,7 +66,9 @@ const Login = () => {
                 type="text"
                 id="name"
                 value={data.name}
-                onChange={inputHandler}
+                onChange={(e) =>
+                  setData((data) => ({ ...data, name: e.target.value }))
+                }
               />
               {errorMessages.nameErr ? (
                 <div className="error-msg">{errorMessages.nameErr}</div>
@@ -88,9 +82,12 @@ const Login = () => {
               id="email"
               value={data.email}
               onChange={(e) =>
-                SetData((data) => ({ ...data, email: e.target.value }))
+                setData((data) => ({ ...data, email: e.target.value }))
               }
             />
+            {errorMessages.emailErr ? (
+              <div className="error-msg">{errorMessages.emailErr}</div>
+            ) : null}
           </div>
           <div className="form-group">
             <label htmlFor="password">password</label>
@@ -98,13 +95,15 @@ const Login = () => {
               type="password"
               id="password"
               value={data.password}
-              onChange={inputHandler}
+              onChange={(e) =>
+                setData((data) => ({ ...data, password: e.target.value }))
+              }
             />
             {errorMessages.passErr ? (
               <div className="error-msg">{errorMessages.passErr}</div>
             ) : null}
           </div>
-          <button className="form-btn">
+          <button className="form-btn" type="submit">
             {isLogin ? "Login" : "Create account"}
           </button>
           <p className="form-foot">
