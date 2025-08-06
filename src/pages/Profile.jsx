@@ -145,8 +145,8 @@ const Profile = ({ userData }) => {
                 : <button onClick={() => setEditable(!editable)}>edit</button>}
         </div>
     //   </div>
-
-    );
+    
+  );
 };
 
 export default Profile;
