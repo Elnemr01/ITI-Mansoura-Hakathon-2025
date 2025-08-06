@@ -1,8 +1,12 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import { v4 as uidqueId } from "uuid";
 import "./pageStyle/loginPage.css";
+import { OurContext } from "../contextAPI/FilterName";
+import { useNavigate } from "react-router";
 
 const Login = () => {
+  const { setLogin } = useContext(OurContext);
+  const navigate = useNavigate();
   const [isLogin, setIsLogin] = useState(false);
   const [data, setData] = useState({
     name: "",
@@ -15,18 +19,20 @@ const Login = () => {
     emailErr: "",
   });
 
+  // controls whether login or create account
   function loginPageHandler(e) {
     e.preventDefault();
 
     setIsLogin((state) => !state);
 
+    setData({ name: "", email: "", password: "" });
     setErrorMessages({ nameErr: "", emailErr: "", passErr: "" });
   }
 
   function onSubmit(e) {
     e.preventDefault();
 
-    // Step 1: Calculate the errors
+    // Calculate the errors
     const nameErr =
       data.name.length < 6 || data.name.length > 20
         ? "name must contain between 6 to 20 chars"
@@ -41,24 +47,43 @@ const Login = () => {
       ? "password must be at least 5 chars and contain letters, digits and special chars"
       : "";
 
-    // Step 2: Update the error state
+    // Update the error state
     setErrorMessages({
       nameErr,
       emailErr,
       passErr,
     });
 
-    // Step 3: Check if all are valid (no errors)
-    if (!nameErr && !emailErr && !passErr) {
-      // Login handle
-      if (isLogin) {
-        // login code
-      }
-      // Create Account handle
-      else {
-        // Database contains data
-        let users = JSON.parse(localStorage.getItem("users")) || [];
+    // Handles dealing with database (after validation)
+    let users = JSON.parse(localStorage.getItem("users")) || [];
 
+    // Login handle
+    if (isLogin) {
+      if (!emailErr && !passErr) {
+        let emailExist = false;
+        let loginCorrect = false;
+        users.forEach((user) => {
+          if (user.email === data.email) {
+            emailExist = true;
+            if (user.password === data.password) loginCorrect = true;
+          }
+        });
+
+        if (emailExist) {
+          if (loginCorrect) {
+            setLogin(() => true);
+            navigate("/");
+          } else {
+            // incorrect email or password
+          }
+        } else {
+          // email is not exist
+        }
+      }
+    }
+    // Create account handle
+    else {
+      if (!nameErr && !emailErr && !passErr) {
         let isFound = users.some((user) => user.email === data.email);
 
         // add user to Database
@@ -68,16 +93,18 @@ const Login = () => {
           localStorage.setItem("users", JSON.stringify(users));
           // current user
           localStorage.setItem("currentUser", JSON.stringify(user));
+
+          // successfully created account
+          setLogin(() => true);
+          navigate("/");
         }
         // user already exists
         else {
-          // go to login
           setTimeout(() => {
             setIsLogin(() => true);
+            setData({ name: "", email: "", password: "" });
           }, 2000);
         }
-        // Clearing input fields
-        setData(() => ({ name: "", email: "", password: "" }));
       }
     }
   }
