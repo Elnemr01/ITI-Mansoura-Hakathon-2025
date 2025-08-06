@@ -57,7 +57,7 @@
 }
 
 .hero .text a {
-    @apply rounded-[50px] bg-white text-black px-[25px] py-[12px] flex items-center gap-2 capitalize text-sm text-[#595959] transition duration-300 w-fit;
+    @apply rounded-[50px] bg-white text-black px-[25px] py-[12px] flex items-center gap-2 capitalize text-sm text-[#595959] transition duration-300 w-fit cursor-pointer;
 }
 
 @media (max-width: 992px) {
