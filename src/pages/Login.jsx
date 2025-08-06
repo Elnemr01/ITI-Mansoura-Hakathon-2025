@@ -9,7 +9,7 @@ const Login = () => {
   const navigate = useNavigate();
   const [isLogin, setIsLogin] = useState(false);
   const [data, setData] = useState({
-    name: "",
+    full_name: "",
     email: "",
     password: "",
   });
@@ -25,7 +25,7 @@ const Login = () => {
 
     setIsLogin((state) => !state);
 
-    setData({ name: "", email: "", password: "" });
+    setData({ full_name: "", email: "", password: "" });
     setErrorMessages({ nameErr: "", emailErr: "", passErr: "" });
   }
 
@@ -34,7 +34,7 @@ const Login = () => {
 
     // Calculate the errors
     const nameErr =
-      data.name.length < 6 || data.name.length > 20
+      data.full_name.length < 6 || data.full_name.length > 20
         ? "name must contain between 6 to 20 chars"
         : "";
 
@@ -102,7 +102,7 @@ const Login = () => {
         else {
           setTimeout(() => {
             setIsLogin(() => true);
-            setData({ name: "", email: "", password: "" });
+            setData({ full_name: "", email: "", password: "" });
           }, 2000);
         }
       }
@@ -123,9 +123,9 @@ const Login = () => {
               <input
                 type="text"
                 id="name"
-                value={data.name}
+                value={data.full_name}
                 onChange={(e) =>
-                  setData((data) => ({ ...data, name: e.target.value }))
+                  setData((data) => ({ ...data, full_name: e.target.value }))
                 }
               />
               {errorMessages.nameErr ? (
