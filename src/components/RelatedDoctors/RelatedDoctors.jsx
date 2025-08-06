@@ -17,4 +17,4 @@ const RelatedDoctor = ({ relatedDoctors }) => {
         </>
     )
 }
-export default RelatedDoctor
+export default RelatedDoctor    
