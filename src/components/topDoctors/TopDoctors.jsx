@@ -16,7 +16,7 @@ const TopDoctors = () => {
           if (entry.isIntersecting) {
             el.classList.add('visible');
           } else {
-            el.classList.remove('visible'); // علشان الإعادة
+            el.classList.remove('visible');
           }
         });
       },
@@ -41,7 +41,8 @@ const TopDoctors = () => {
       />
 
       <div className="doctorCard">
-        {doctors.slice(0, 10).map((doctor, index) => (
+        {[...doctors].sort((a,b)=> b.experience.localeCompare(a.experience)
+        ).slice(0,10).map((doctor, index) => (
           <div
             key={doctor._id}
             className="animated"
