@@ -2,7 +2,7 @@ import { useContext, useEffect, useState } from "react";
 import './doctorTime.css'
 import { toast, ToastContainer } from "react-toastify";
 import { useDispatch, useSelector } from "react-redux";
-import { addAppointment } from "../../reduxToolKit/AppointmentSlice";
+import { addAppointment } from "../../reduxToolkit/AppointmentSlice";
 import { OurContext } from "../../contextAPI/FilterName";
 import { v4 as idv4 } from "uuid";
 

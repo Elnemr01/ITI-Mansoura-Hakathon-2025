@@ -3,7 +3,7 @@ import './appointmentCard.css'
 import { useDispatch } from 'react-redux'
 import { cancelAppointment } from '../../reduxToolkit/AppointmentSlice'
 
-const AppointmentCard = ({appointmentData}) => {    
+const AppointmentCard = ({appointmentData}) => {
     const dispatch=useDispatch();
     return (
         <div className="appointmentCard">
