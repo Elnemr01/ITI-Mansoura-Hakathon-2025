@@ -1,5 +1,6 @@
-import { assets } from "../../assets/assets_frontend/assets"
-import './footer.css'
+import { Link } from "react-router-dom";
+import { assets } from "../../assets/assets_frontend/assets";
+import "./footer.css";
 const Footer = () => {
   return (
     <>
@@ -7,14 +8,22 @@ const Footer = () => {
         <div className="footer-left">
           <img src={assets.logo} alt="logo" className="footer-logo" />
           <p className="footer-description">
-            Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.    </p>
+            Lorem Ipsum is simply dummy text of the printing and typesetting
+            industry. Lorem Ipsum has been the industry's standard dummy text
+            ever since the 1500s, when an unknown printer took a galley of type
+            and scrambled it to make a type specimen book.{" "}
+          </p>
         </div>
 
         <div className="footer-column">
           <h1 className="footer-title">COMPANY</h1>
           <ul className="footer-list">
-            <li>Home</li>
-            <li>About Us</li>
+            <Link to="/">
+              <li>Home</li>
+            </Link>
+            <Link to="/about">
+              <li>About Us</li>
+            </Link>
             <li>Delivery</li>
             <li>Privacy policy</li>
           </ul>
@@ -31,8 +40,7 @@ const Footer = () => {
       <p className="footer-copy">
         Copyright 2024 @ Web Master.dev - All Right Reserved.
       </p>
-
     </>
-  )
-}
-export default Footer
+  );
+};
+export default Footer;
