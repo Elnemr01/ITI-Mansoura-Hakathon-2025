@@ -1,7 +1,7 @@
 import { useContext, useEffect, useState } from "react";
 import './doctorTime.css'
 import { toast, ToastContainer } from "react-toastify";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { addAppointment } from "../../reduxToolKit/AppointmentSlice";
 import { OurContext } from "../../contextAPI/FilterName";
 import { v4 as idv4 } from "uuid";
@@ -17,6 +17,7 @@ const DoctorTime = ({ doctors }) => {
     const [selectedTimeIndex, setSelectedTimeIndex] = useState(null);
     const { login } = useContext(OurContext);
     const dispatch = useDispatch();
+    const appointmentArr=useSelector(state => state.appContainer);
     useEffect(() => {
         const today = new Date();
         const now = new Date();
@@ -83,6 +84,19 @@ const DoctorTime = ({ doctors }) => {
             return;
         }
         if (selectedDayIndex !== null && selectedTimeIndex !== null) {
+
+            let appointmentObj={
+                id: idv4(),
+                image: doctors.image,
+                name: doctors.name,
+                speciality: doctors.speciality,
+                address: doctors.address,
+                date: slotDate,
+                time: slotTime
+            }
+
+            
+
             toast.success('Appointment Booked');
             dispatch(addAppointment({
                 id: idv4(),
@@ -97,6 +111,15 @@ const DoctorTime = ({ doctors }) => {
             return;
         }
     }
+
+    function compareTwoObj(obj1, obj2) {
+        const { id: _, ...rest1 } = obj1;
+        const { id: __, ...rest2 } = obj2;
+
+        return JSON.stringify(rest1) === JSON.stringify(rest2);
+    }
+
+
     return (
         <>
             {/* المواعيد */}

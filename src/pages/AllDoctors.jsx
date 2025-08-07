@@ -2,7 +2,7 @@ import React, { useContext, useEffect, useState } from 'react'
 import './pageStyle/allDoctorStyle.css'
 import FilterBySpeciality from '../components/filterBySpeciality/FilterBySpeciality'
 import { doctors } from '../assets/assets_frontend/assets';
-import DoctorCard from '../components/doctorCard/DoctorCard';
+import DoctorCard from '../components/Doctorcard/DoctorCard';
 import { OurContext } from '../contextAPI/FilterName';
 
 const AllDoctors = () => {
