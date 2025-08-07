@@ -1,14 +1,14 @@
 .topDoctors {
-    @apply mb-[100px];
+  @apply mb-[100px];
 }
 
 .topDoctors .doctorCard {
-    @apply grid gap-4;
-    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  @apply grid gap-4;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
 }
 
 .topDoctors > a:last-child {
-    @apply w-fit flex justify-center px-[40px] py-[16px] rounded-[50px] my-0 mx-auto mt-[50px] bg-[rgb(234_239_255)];
+  @apply w-fit flex justify-center px-[40px] py-[16px] rounded-[50px] my-0 mx-auto mt-[50px] bg-[rgb(234_239_255)];
 }
 
 /* Animation */
@@ -24,6 +24,9 @@
 }
 
 .doctorCard .animated {
-  animation: fadeInUp 0.6s ease forwards;
   opacity: 0;
+}
+
+.doctorCard .animated.visible {
+  animation: fadeInUp 0.6s ease forwards;
 }
