@@ -2,27 +2,38 @@ import React, { useEffect, useState } from 'react'
 import './topDoctors.css'
 import { doctors } from '../../assets/assets_frontend/assets';
 import HomeTitle from '../homeTitle/HomeTitle';
-import DoctorCard from '../doctorCard/DoctorCard';
+import DoctorCard from '../Doctorcard/DoctorCard';
 import { Link } from 'react-router';
 
 const TopDoctors = () => {
-    const [topDoc,setTopDoc]=useState([]);
+    const [topDoc, setTopDoc] = useState([]);
 
-    useEffect(()=> {
+    useEffect(() => {
         setTopDoc(doctors);
-    })
+    }, []); // مهم: نحط [] علشان الماب يتم مرة واحدة بس
 
     return (
         <section className='topDoctors'>
-            <HomeTitle text1={'Top Doctors to Book'}
-            text2={'Simply browse through our extensive list of trusted doctors.'}/>
+            <HomeTitle
+                text1={'Top Doctors to Book'}
+                text2={'Simply browse through our extensive list of trusted doctors.'}
+            />
 
             <div className="doctorCard">
-                {topDoc.slice(0,10).map((e)=> <DoctorCard doctor={e} key={e._id}/>)}
+                {topDoc.slice(0, 10).map((e, index) => (
+                    <div
+                        key={e._id}
+                        className="animated"
+                        style={{ animationDelay: `${index * 0.1}s` }}
+                    >
+                        <DoctorCard doctor={e} />
+                    </div>
+                ))}
             </div>
+
             <Link to={'/allDocutors'}>more</Link>
         </section>
-    )
+    );
 }
 
-export default TopDoctors
+export default TopDoctors;
