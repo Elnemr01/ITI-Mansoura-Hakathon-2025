@@ -11,6 +11,12 @@
   @apply text-center py-6 min-w-16 rounded-full cursor-pointer border border-[#DDDDDD] px-4;
 }
 
+.day-item.disabled {
+  /* pointer-events: none; */
+  color: #eee;
+  cursor: no-drop
+}
+
 .day-item-active {
   @apply bg-blue-600 border-blue-600 text-white;
 }
