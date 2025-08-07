@@ -12,12 +12,14 @@ const Account = () => {
   return (
     <div className="account-container">
       <div className="profile-trigger">
-        <img
-          src={profileImage || assets.upload_area}
-          className="profile-img"
-          alt="check connection"
-          loading="lazy"
-        />
+        <Link to="/my-profile">
+          <img
+            src={profileImage || assets.upload_area}
+            className="profile-img"
+            alt="check connection"
+            loading="lazy"
+          />
+        </Link>
         <img
           src={assets.dropdown_icon}
           className="w-3"
