@@ -1,7 +1,7 @@
 import { useContext, useEffect, useState } from "react";
 import './doctorTime.css'
 import { toast, ToastContainer } from "react-toastify";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { addAppointment } from "../../reduxToolKit/AppointmentSlice";
 import { OurContext } from "../../contextAPI/FilterName";
 import { v4 as idv4 } from "uuid";
@@ -17,6 +17,7 @@ const DoctorTime = ({ doctors }) => {
     const [selectedTimeIndex, setSelectedTimeIndex] = useState(null);
     const { login } = useContext(OurContext);
     const dispatch = useDispatch();
+    const appointmentArr=useSelector(state => state.appContainer);
     useEffect(() => {
         const today = new Date();
         const now = new Date();
@@ -83,8 +84,8 @@ const DoctorTime = ({ doctors }) => {
             return;
         }
         if (selectedDayIndex !== null && selectedTimeIndex !== null) {
-            toast.success('Appointment Booked');
-            dispatch(addAppointment({
+
+            let appointmentObj={
                 id: idv4(),
                 image: doctors.image,
                 name: doctors.name,
@@ -92,11 +93,29 @@ const DoctorTime = ({ doctors }) => {
                 address: doctors.address,
                 date: slotDate,
                 time: slotTime
-            }))
+            }
 
+            let appointmentExist=appointmentArr.some((e)=> compareTwoObj(e,appointmentObj));
+            if(appointmentExist) {
+                toast.error('This Appointment is Booked Before');
+            }
+            else {
+                toast.success('Appointment Booked');
+                dispatch(addAppointment(appointmentObj))
+            }
+            
             return;
         }
     }
+
+    function compareTwoObj(obj1, obj2) {
+        const { id: _, ...rest1 } = obj1;
+        const { id: __, ...rest2 } = obj2;
+
+        return JSON.stringify(rest1) === JSON.stringify(rest2);
+    }
+
+
     return (
         <>
             {/* المواعيد */}

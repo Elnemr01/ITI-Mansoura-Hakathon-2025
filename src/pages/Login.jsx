@@ -3,6 +3,7 @@ import { v4 as uidqueId } from "uuid";
 import "./pageStyle/loginPage.css";
 import { OurContext } from "../contextAPI/FilterName";
 import { useNavigate } from "react-router";
+import { toast, ToastContainer } from "react-toastify";
 
 const Login = () => {
   const { setLogin } = useContext(OurContext);
@@ -72,12 +73,17 @@ const Login = () => {
         if (emailExist) {
           if (loginCorrect) {
             setLogin(() => true);
-            navigate("/");
+            toast.success("login successfully")
+            setTimeout(()=> {
+              navigate("/");
+            },1800)
           } else {
             // incorrect email or password
+            toast.error('Incorrect email or password');
           }
         } else {
           // email is not exist
+          toast.error('Email is not exist');
         }
       }
     }
@@ -95,15 +101,19 @@ const Login = () => {
           localStorage.setItem("currentUser", JSON.stringify(user));
 
           // successfully created account
-          setLogin(() => true);
-          navigate("/");
+          toast.success("successfully created account");
+          setTimeout(()=> {
+            setLogin(() => true);
+            navigate("/");
+          },1800)
         }
         // user already exists
         else {
+          toast.error("User already exists")
           setTimeout(() => {
             setIsLogin(() => true);
             setData({ full_name: "", email: "", password: "" });
-          }, 2000);
+          }, 1800);
         }
       }
     }
@@ -111,6 +121,10 @@ const Login = () => {
 
   return (
     <div className="login-page">
+      <ToastContainer
+        position="top-right"
+        style={{ top: '100px', right: '50px' }}
+      />
       <div className="form">
         <form onSubmit={onSubmit}>
           <h2>{isLogin ? "Login" : "Create Account"}</h2>
