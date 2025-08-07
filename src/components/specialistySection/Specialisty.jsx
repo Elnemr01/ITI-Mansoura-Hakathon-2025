@@ -10,27 +10,6 @@ const Specialisty = () => {
   const [specialistyArr, setSpecialisty] = useState([])
   const { setFilter } = useContext(OurContext)
 
-<<<<<<< HEAD
-        useEffect(()=> {
-            setSpecialisty(specialityData);
-        },[])
-        return (
-            <section id='speciality'>
-                <HomeTitle text1={'Find by Speciality'}
-                text2={'Simply browse through our extensive list of trusted doctors,schedule your appointment hassle-free.'}/>
-                    {/* specialistyData */}
-                <div className="specialistyData">
-                    {specialistyArr.map((e,i)=> {
-                        return <Link to='/allDocutors' key={i} onClick={()=> setFilter(e.speciality)}>
-                            <img src={e.image} alt="check connection" loading='lazy' />
-                            <p className='specialistyName'>{e.speciality}</p>
-                        </Link>
-                    })}
-                </div>
-            </section>
-        )
-    }
-=======
   useEffect(() => {
     setSpecialisty(specialityData)
   }, [])
@@ -76,6 +55,5 @@ const Specialisty = () => {
     </motion.section>
   )
 }
->>>>>>> ae8ea4a85f4a6fe25c181af4cf859ae763ab42df
 
     export default Specialisty
