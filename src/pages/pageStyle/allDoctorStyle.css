@@ -6,33 +6,13 @@
     @apply flex gap-8;
 }
 
-@media (min-width: 768px) {
-  .content {
-    flex-direction: row;
-    align-items: flex-start;
-  }
-
-  .filter-section {
-    width: 250px;
-    flex-shrink: 0;
-  }
-
-  .allDoctors {
-    grid-template-columns: repeat(2, 1fr);
-    flex: 1;
-  }
+@media (width <= 768px) {
+    .allDoctorsPage .content {
+        @apply flex-col;
+    }
 }
 
-@media (min-width: 1024px) {
-  .allDoctors {
-    grid-template-columns: repeat(4, 1fr);
-  }
-}
-
-/* تنسيق الكارت */
-.allDoctors .card {
-  background: white;
-  border-radius: 8px;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-  overflow: hidden;
+.allDoctorsPage .content .allDoctors {
+    @apply grid gap-4 flex-1;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
 }
