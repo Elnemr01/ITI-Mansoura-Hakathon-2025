@@ -1,51 +1,32 @@
-/* الحاوية الرئيسية للصفحة */
 .allDoctorsPage {
-  padding: 40px 20px;
-  background-color: #f9fbff;
+  padding: 40px;
   font-family: 'Segoe UI', sans-serif;
+  background-color: transparent; /* حذف الخلفية */
 }
 
-/* جملة التوجيه */
-.action {
-  font-size: 20px;
-  font-weight: 500;
-  margin-bottom: 20px;
-  text-align: center;
-}
-
-/* الحاوية الداخلية (فلتر + كروت) */
 .content {
   display: flex;
-  flex-direction: column;
   gap: 2rem;
+  flex-wrap: wrap;
 }
 
-/* الفلتر */
 .filter-section {
-  width: 100%;
+  width: 220px;
+  min-width: 220px;
+  flex-shrink: 0;
+  margin-top: 10px; /* رفع القسم الشمالي لفوق */
 }
 
-/* الكروت */
 .allDoctors {
+  flex: 1;
   display: grid;
   grid-template-columns: repeat(1, 1fr);
   gap: 1rem;
 }
 
-@media (min-width: 768px) {
-  .content {
-    flex-direction: row;
-    align-items: flex-start;
-  }
-
-  .filter-section {
-    width: 250px;
-    flex-shrink: 0;
-  }
-
+@media (min-width: 640px) {
   .allDoctors {
     grid-template-columns: repeat(2, 1fr);
-    flex: 1;
   }
 }
 
@@ -55,10 +36,24 @@
   }
 }
 
-/* تنسيق الكارت */
 .allDoctors .card {
   background: white;
   border-radius: 8px;
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
   overflow: hidden;
+}
+
+.action {
+  font-size: 16px;
+  font-weight: 500;
+  color: #7d879c;
+  margin-bottom: 10px;
+}
+
+.specialties-list {
+  font-size: 15px;
+  color: #7d879c;
+  line-height: 1.6;
+  font-weight: 400;
+  margin-bottom: 20px;
 }
