@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react'
 import './topDoctors.css'
 import { doctors } from '../../assets/assets_frontend/assets';
 import HomeTitle from '../homeTitle/HomeTitle';
-import DoctorCard from '../doctorCard/DoctorCard';
+import DoctorCard from '../Doctorcard/DoctorCard';
 import { Link } from 'react-router';
 
 const TopDoctors = () => {

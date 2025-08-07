@@ -1,7 +1,7 @@
 import React from 'react'
 import './appointmentCard.css'
 import { useDispatch } from 'react-redux'
-import { cancelAppointment } from '../../reduxToolKit/AppointmentSlice'
+import { cancelAppointment } from '../../reduxToolkit/AppointmentSlice'
 
 const AppointmentCard = ({appointmentData}) => {    
     const dispatch=useDispatch();
