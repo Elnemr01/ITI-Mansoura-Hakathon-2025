@@ -4,38 +4,7 @@ import FilterBySpeciality from '../components/filterBySpeciality/FilterBySpecial
 import { doctors } from '../assets/assets_frontend/assets';
 import DoctorCard from '../components/Doctorcard/DoctorCard';
 import { OurContext } from '../contextAPI/FilterName';
-import { motion, useInView } from 'framer-motion';
-import { useRef } from 'react';
-
-const CardWrapper = ({ children, index }) => {
-    const ref = useRef(null);
-    const inView = useInView(ref, { triggerOnce: false, threshold: 0.2 });
-
-    const variants = {
-        hidden: { opacity: 0, y: 30 },
-        visible: {
-            opacity: 1,
-            y: 0,
-            transition: {
-                duration: 0.5,
-                delay: index * 0.05,
-                ease: 'easeOut'
-            }
-        }
-    };
-
-    return (
-        <motion.div
-            ref={ref}
-            className="card"
-            initial="hidden"
-            animate={inView ? 'visible' : 'hidden'}
-            variants={variants}
-        >
-            {children}
-        </motion.div>
-    );
-};
+import { motion } from 'framer-motion'; // ✅ إضافة framer-motion
 
 const AllDoctors = () => {
     const [allDoc, setAllDoc] = useState([]);
@@ -45,26 +14,62 @@ const AllDoctors = () => {
         if (filterName !== '') {
             setAllDoc(doctors.filter((e) => e.speciality === filterName));
         } else {
+    const [allDoc, setAllDoc] = useState([]);
+    const { filterName } = useContext(OurContext);
+
+    useEffect(() => {
+        if (filterName !== '') {
+            setAllDoc(doctors.filter((e) => e.speciality === filterName));
+        } else {
             setAllDoc(doctors);
-        }
-    }, [filterName]);
+        }    }, [filterName]);
 
     return (
         <section className="allDoctorsPage">
-            <p className="action">
+            {/* ✅ أنيميشن للعنوان */}
+            <motion.p
+                className="action"
+                initial={{ opacity: 0, y: -50 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.6 }}
+                viewport={{ once: true }}
+            >
                 Browse through the doctors specialist.
-            </p>
+            </motion.p>
+
             <div className="content">
-                <div className="filter-section">
+                {/* ✅ أنيميشن للفلتر */}
+                <motion.div
+                    initial={{ opacity: 0, x: -100 }}
+                    whileInView={{ opacity: 1, x: 0 }}
+                    transition={{ duration: 0.6, delay: 0.2 }}
+                    viewport={{ once: true }}
+                >
                     <FilterBySpeciality />
-                </div>
-                <div className="allDoctors">
-                    {allDoc.map((e, index) => (
-                        <CardWrapper key={e._id} index={index}>
-                            <DoctorCard doctor={e} />
-                        </CardWrapper>
-                    ))}
-                </div>
+                </motion.div>
+
+                {/* ✅ أنيميشن للكروت */}
+                <motion.div
+                    className="allDoctors"
+                    initial={{ opacity: 0, x: 100 }}
+                    whileInView={{ opacity: 1, x: 0 }}
+                    transition={{ duration: 0.6, delay: 0.4 }}
+                    viewport={{ once: true }}
+                >
+                    {
+                        allDoc.map((e, index) =>
+                            <motion.div
+                                key={e._id}
+                                initial={{ opacity: 0, scale: 0.9 }}
+                                whileInView={{ opacity: 1, scale: 1 }}
+                                transition={{ duration: 0.5, delay: index * 0.1 }}
+                                viewport={{ once: true }}
+                            >
+                                <DoctorCard doctor={e} />
+                            </motion.div>
+                        )
+                    }
+                </motion.div>
             </div>
         </section>
     );
