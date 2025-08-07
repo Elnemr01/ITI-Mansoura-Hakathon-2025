@@ -17,7 +17,7 @@ const Hero = () => {
 
     const containerVariants = {
         hidden: { opacity: 0 },
-        visible: { opacity: 1, transition: { staggerChildren: 0.2, delayChildren: 0.3} }
+        visible: { opacity: 1, transition: { staggerChildren: 0.3, delayChildren: 0.4} }
     }
 
     const fadeInUp = {
