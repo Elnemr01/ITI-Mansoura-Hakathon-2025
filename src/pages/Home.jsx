@@ -1,5 +1,5 @@
 import GoLoginSection from "../components/goLoginSection/GoLoginSection";
-import Hero from "../components/hero/HeroSection";
+import Hero from "../components/Hero/medhat";
 import Specialisty from "../components/specialistySection/Specialisty";
 import TopDoctors from "../components/topDoctors/TopDoctors";
 
