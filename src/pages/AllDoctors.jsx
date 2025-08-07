@@ -4,7 +4,7 @@ import FilterBySpeciality from '../components/filterBySpeciality/FilterBySpecial
 import { doctors } from '../assets/assets_frontend/assets';
 import DoctorCard from '../components/Doctorcard/DoctorCard';
 import { OurContext } from '../contextAPI/FilterName';
-import { motion } from 'framer-motion'; // ✅ إضافة framer-motion
+import { motion } from 'framer-motion'; 
 
 const AllDoctors = () => {
     const [allDoc, setAllDoc] = useState([]);
@@ -26,7 +26,6 @@ const AllDoctors = () => {
 
     return (
         <section className="allDoctorsPage">
-            {/* ✅ أنيميشن للعنوان */}
             <motion.p
                 className="action"
                 initial={{ opacity: 0, y: -50 }}
@@ -38,7 +37,6 @@ const AllDoctors = () => {
             </motion.p>
 
             <div className="content">
-                {/* ✅ أنيميشن للفلتر */}
                 <motion.div
                     initial={{ opacity: 0, x: -100 }}
                     whileInView={{ opacity: 1, x: 0 }}
@@ -48,7 +46,6 @@ const AllDoctors = () => {
                     <FilterBySpeciality />
                 </motion.div>
 
-                {/* ✅ أنيميشن للكروت */}
                 <motion.div
                     className="allDoctors"
                     initial={{ opacity: 0, x: 100 }}
