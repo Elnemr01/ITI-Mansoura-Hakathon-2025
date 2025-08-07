@@ -1,64 +1,18 @@
-/* الحاوية الرئيسية للصفحة */
-.allDoctorsPage {
-  padding: 40px 20px;
-  background-color: #f9fbff;
-  font-family: 'Segoe UI', sans-serif;
+.allDoctorsPage .action {
+    @apply pb-3.5 text-sm text-gray-600;
 }
 
-/* جملة التوجيه */
-.action {
-  font-size: 20px;
-  font-weight: 500;
-  margin-bottom: 20px;
-  text-align: center;
+.allDoctorsPage .content {
+    @apply flex gap-8;
 }
 
-/* الحاوية الداخلية (فلتر + كروت) */
-.content {
-  display: flex;
-  flex-direction: column;
-  gap: 2rem;
+@media (width <= 768px) {
+    .allDoctorsPage .content {
+        @apply flex-col;
+    }
 }
 
-/* الفلتر */
-.filter-section {
-  width: 100%;
-}
-
-/* الكروت */
-.allDoctors {
-  display: grid;
-  grid-template-columns: repeat(1, 1fr);
-  gap: 1rem;
-}
-
-@media (min-width: 768px) {
-  .content {
-    flex-direction: row;
-    align-items: flex-start;
-  }
-
-  .filter-section {
-    width: 250px;
-    flex-shrink: 0;
-  }
-
-  .allDoctors {
-    grid-template-columns: repeat(2, 1fr);
-    flex: 1;
-  }
-}
-
-@media (min-width: 1024px) {
-  .allDoctors {
-    grid-template-columns: repeat(4, 1fr);
-  }
-}
-
-/* تنسيق الكارت */
-.allDoctors .card {
-  background: white;
-  border-radius: 8px;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-  overflow: hidden;
+.allDoctorsPage .content .allDoctors {
+    @apply grid gap-4 flex-1;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
 }
