@@ -95,19 +95,15 @@ const DoctorTime = ({ doctors }) => {
                 time: slotTime
             }
 
+            let appointmentExist=appointmentArr.some((e)=> compareTwoObj(e,appointmentObj));
+            if(appointmentExist) {
+                toast.error('This Appointment is Booked Before');
+            }
+            else {
+                toast.success('Appointment Booked');
+                dispatch(addAppointment(appointmentObj))
+            }
             
-
-            toast.success('Appointment Booked');
-            dispatch(addAppointment({
-                id: idv4(),
-                image: doctors.image,
-                name: doctors.name,
-                speciality: doctors.speciality,
-                address: doctors.address,
-                date: slotDate,
-                time: slotTime
-            }))
-
             return;
         }
     }
