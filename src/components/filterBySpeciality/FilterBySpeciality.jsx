@@ -17,10 +17,16 @@ const FilterBySpeciality = () => {
             <p className='filter-btn' onClick={() => setShowFilter(!showFilter)}>filters</p>
             {
                 speciality.map((e, i) => {
-                    return <li key={i} className={`${filterName === e ? 'choicen' : ''} ${!showFilter ? 'hidden' : 'block'}`}
-                        onClick={() => setFilter(e)}>
-                        {e}
-                    </li>
+                    return (
+                        <li
+                            key={i}
+                            className={`animated ${filterName === e ? 'choicen' : ''} ${!showFilter ? 'hidden' : 'block'}`}
+                            style={{ animationDelay: `${i * 0.1}s` }}
+                            onClick={() => setFilter(e)}
+                        >
+                            {e}
+                        </li>
+                    );
                 })
             }
         </ul>
@@ -28,3 +34,4 @@ const FilterBySpeciality = () => {
 }
 
 export default FilterBySpeciality
+

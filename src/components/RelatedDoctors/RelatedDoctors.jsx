@@ -1,4 +1,4 @@
-import DoctorCard from "../doctorCard/DoctorCard"
+import DoctorCard from "../Doctorcard/DoctorCard"
 
 const RelatedDoctor = ({ relatedDoctors }) => {
     return (

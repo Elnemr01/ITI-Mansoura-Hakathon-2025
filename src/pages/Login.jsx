@@ -1,11 +1,16 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import { v4 as uidqueId } from "uuid";
 import "./pageStyle/loginPage.css";
+import { OurContext } from "../contextAPI/FilterName";
+import { useNavigate } from "react-router";
+import { toast, ToastContainer } from "react-toastify";
 
 const Login = () => {
+  const { setLogin } = useContext(OurContext);
+  const navigate = useNavigate();
   const [isLogin, setIsLogin] = useState(false);
   const [data, setData] = useState({
-    name: "",
+    full_name: "",
     email: "",
     password: "",
   });
@@ -15,20 +20,22 @@ const Login = () => {
     emailErr: "",
   });
 
+  // controls whether login or create account
   function loginPageHandler(e) {
     e.preventDefault();
 
     setIsLogin((state) => !state);
 
+    setData({ full_name: "", email: "", password: "" });
     setErrorMessages({ nameErr: "", emailErr: "", passErr: "" });
   }
 
   function onSubmit(e) {
     e.preventDefault();
 
-    // Step 1: Calculate the errors
+    // Calculate the errors
     const nameErr =
-      data.name.length < 6 || data.name.length > 20
+      data.full_name.length < 6 || data.full_name.length > 20
         ? "name must contain between 6 to 20 chars"
         : "";
 
@@ -41,24 +48,48 @@ const Login = () => {
       ? "password must be at least 5 chars and contain letters, digits and special chars"
       : "";
 
-    // Step 2: Update the error state
+    // Update the error state
     setErrorMessages({
       nameErr,
       emailErr,
       passErr,
     });
 
-    // Step 3: Check if all are valid (no errors)
-    if (!nameErr && !emailErr && !passErr) {
-      // Login handle
-      if (isLogin) {
-        // login code
-      }
-      // Create Account handle
-      else {
-        // Database contains data
-        let users = JSON.parse(localStorage.getItem("users")) || [];
+    // Handles dealing with database (after validation)
+    let users = JSON.parse(localStorage.getItem("users")) || [];
 
+    // Login handle
+    if (isLogin) {
+      if (!emailErr && !passErr) {
+        let emailExist = false;
+        let loginCorrect = false;
+        users.forEach((user) => {
+          if (user.email === data.email) {
+            emailExist = true;
+            if (user.password === data.password) loginCorrect = true;
+          }
+        });
+
+        if (emailExist) {
+          if (loginCorrect) {
+            setLogin(() => true);
+            toast.success("login successfully");
+            setTimeout(() => {
+              navigate("/");
+            }, 1800);
+          } else {
+            // incorrect email or password
+            toast.error("Incorrect email or password");
+          }
+        } else {
+          // email is not exist
+          toast.error("Email is not exist");
+        }
+      }
+    }
+    // Create account handle
+    else {
+      if (!nameErr && !emailErr && !passErr) {
         let isFound = users.some((user) => user.email === data.email);
 
         // add user to Database
@@ -68,22 +99,29 @@ const Login = () => {
           localStorage.setItem("users", JSON.stringify(users));
           // current user
           localStorage.setItem("currentUser", JSON.stringify(user));
+
+          // successfully created account
+          toast.success("successfully created account");
+          setTimeout(() => {
+            setLogin(() => true);
+            navigate("/");
+          }, 1800);
         }
         // user already exists
         else {
-          // go to login
+          toast.error("User already exists");
           setTimeout(() => {
             setIsLogin(() => true);
-          }, 2000);
+            setData({ full_name: "", email: "", password: "" });
+          }, 1800);
         }
-        // Clearing input fields
-        setData(() => ({ name: "", email: "", password: "" }));
       }
     }
   }
 
   return (
     <div className="login-page">
+      <ToastContainer position="top-right" />
       <div className="form">
         <form onSubmit={onSubmit}>
           <h2>{isLogin ? "Login" : "Create Account"}</h2>
@@ -96,9 +134,9 @@ const Login = () => {
               <input
                 type="text"
                 id="name"
-                value={data.name}
+                value={data.full_name}
                 onChange={(e) =>
-                  setData((data) => ({ ...data, name: e.target.value }))
+                  setData((data) => ({ ...data, full_name: e.target.value }))
                 }
               />
               {errorMessages.nameErr ? (

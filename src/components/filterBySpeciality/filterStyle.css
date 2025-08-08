@@ -29,3 +29,20 @@
 .filteration li.choicen {
     @apply bg-indigo-100 text-black;
 }
+
+/* ✅ Animation */
+@keyframes slideDown {
+    from {
+        opacity: 0;
+        transform: translateY(-10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.filteration li.animated {
+    animation: slideDown 0.4s ease forwards;
+    opacity: 0;
+}

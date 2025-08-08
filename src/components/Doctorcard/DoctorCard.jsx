@@ -17,6 +17,7 @@ let goToTop = () => {
             <div className="image">
                 <img src={doctor.image} alt="check connection" loading='lazy'/>
             </div>
+            
             <div className="available">
                 <p></p>
                 <p>availabe</p>

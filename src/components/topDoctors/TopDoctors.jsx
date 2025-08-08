@@ -1,28 +1,61 @@
-import React, { useEffect, useState } from 'react'
-import './topDoctors.css'
+import React, { useEffect, useRef } from 'react';
+import './topDoctors.css';
 import { doctors } from '../../assets/assets_frontend/assets';
 import HomeTitle from '../homeTitle/HomeTitle';
-import DoctorCard from '../doctorCard/DoctorCard';
-import { Link } from 'react-router';
+import DoctorCard from '../Doctorcard/DoctorCard';
+import { Link } from 'react-router-dom';
 
 const TopDoctors = () => {
-    const [topDoc,setTopDoc]=useState([]);
+  const containerRef = useRef(null);
 
-    useEffect(()=> {
-        setTopDoc(doctors);
-    })
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          const el = entry.target;
+          if (entry.isIntersecting) {
+            el.classList.add('visible');
+          } else {
+            el.classList.remove('visible');
+          }
+        });
+      },
+      {
+        threshold: 0.2,
+      }
+    );
 
-    return (
-        <section className='topDoctors'>
-            <HomeTitle text1={'Top Doctors to Book'}
-            text2={'Simply browse through our extensive list of trusted doctors.'}/>
+    const elements = containerRef.current.querySelectorAll('.animated');
+    elements.forEach((el) => observer.observe(el));
 
-            <div className="doctorCard">
-                {topDoc.slice(0,10).map((e)=> <DoctorCard doctor={e} key={e._id}/>)}
-            </div>
-            <Link to={'/allDocutors'}>more</Link>
-        </section>
-    )
-}
+    return () => {
+      elements.forEach((el) => observer.unobserve(el));
+    };
+  }, []);
 
-export default TopDoctors
+  return (
+    <section className="topDoctors" ref={containerRef}>
+      <HomeTitle
+        text1="Top Doctors to Book"
+        text2="Simply browse through our extensive list of trusted doctors."
+      />
+
+      <div className="doctorCard">
+        {[...doctors].sort((a,b)=> b.experience.localeCompare(a.experience)
+        ).slice(0,10).map((doctor, index) => (
+          <div
+            key={doctor._id}
+            className="animated"
+            style={{ animationDelay: `${index * 0.1}s` }}
+          >
+            <DoctorCard doctor={doctor} />
+          </div>
+        ))}
+      </div>
+
+      <Link to="/allDocutors">more</Link>
+    </section>
+  );
+};
+
+export default TopDoctors;

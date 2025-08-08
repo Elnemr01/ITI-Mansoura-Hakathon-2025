@@ -178,7 +178,7 @@ export const doctors = [
         image: doc7,
         speciality: 'General physician',
         degree: 'MBBS',
-        experience: '4 Years',
+        experience: '5 Years',
         about: 'Dr. Davis has a strong commitment to delivering comprehensive medical care, focusing on preventive medicine, early diagnosis, and effective treatment strategies. Dr. Davis has a strong commitment to delivering comprehensive medical care, focusing on preventive medicine, early diagnosis, and effective treatment strategies.',
         fees: 50,
         address: {

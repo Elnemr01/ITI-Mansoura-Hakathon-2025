@@ -97,7 +97,7 @@ const Header = () => {
           {login ? (
             ""
           ) : (
-            <Link to={"/login"}>
+            <Link to={"/login"} onClick={() => setMenuOpen(false)}>
               <button className="btn_primary">Create Account</button>
             </Link>
           )}
