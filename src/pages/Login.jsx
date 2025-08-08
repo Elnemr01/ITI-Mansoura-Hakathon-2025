@@ -73,17 +73,17 @@ const Login = () => {
         if (emailExist) {
           if (loginCorrect) {
             setLogin(() => true);
-            toast.success("login successfully")
-            setTimeout(()=> {
+            toast.success("login successfully");
+            setTimeout(() => {
               navigate("/");
-            },1800)
+            }, 1800);
           } else {
             // incorrect email or password
-            toast.error('Incorrect email or password');
+            toast.error("Incorrect email or password");
           }
         } else {
           // email is not exist
-          toast.error('Email is not exist');
+          toast.error("Email is not exist");
         }
       }
     }
@@ -102,14 +102,14 @@ const Login = () => {
 
           // successfully created account
           toast.success("successfully created account");
-          setTimeout(()=> {
+          setTimeout(() => {
             setLogin(() => true);
             navigate("/");
-          },1800)
+          }, 1800);
         }
         // user already exists
         else {
-          toast.error("User already exists")
+          toast.error("User already exists");
           setTimeout(() => {
             setIsLogin(() => true);
             setData({ full_name: "", email: "", password: "" });
@@ -121,10 +121,7 @@ const Login = () => {
 
   return (
     <div className="login-page">
-      <ToastContainer
-        position="top-right"
-        style={{ top: '100px', right: '50px' }}
-      />
+      <ToastContainer position="top-right" />
       <div className="form">
         <form onSubmit={onSubmit}>
           <h2>{isLogin ? "Login" : "Create Account"}</h2>
