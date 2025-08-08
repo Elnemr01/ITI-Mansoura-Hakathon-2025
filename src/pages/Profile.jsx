@@ -45,94 +45,15 @@ const Profile = ({ userData }) => {
     toast.success("Profile Updated");
     let user = JSON.parse(localStorage.getItem("currentUser"));
 
-    // Update profile image if a new one was uploaded
     if (newImage) {
       setLocalProfileImage(newImage);
-      setProfileImage(newImage); // Update the context
+      setProfileImage(newImage);
     }
 
-<<<<<<< HEAD
-    if (!login) return null;
-    return (
-        <div className="profile">
-            <div className="picture">
-                { editable ? (
-                    <label htmlFor="profile-image-upload" style={{ cursor: 'pointer' }}>
-                        <img src={newImage || profileImage} alt="profile" loading='lazy'/>
-                        <input type="file" className='hidden' id="profile-image-upload" accept="image/*" onChange={(event)=> handleImageUpload(event)} />
-                    </label>
-                ) :
-                    <img src={profileImage} alt="profile" loading='lazy' />
-                }
-            </div>
-            {/* user name */}
-            <div className="name">
-                {
-                    !editable ? <h1>{name}</h1> :
-                        <input type="text" value={name} onChange={(eve) => setName(eve.target.value)} />
-                }
-            </div>
-            {/* contact info */}
-            <div className="contactInfo infoTitle">
-                <h2>contact information</h2>
-                {/* email */}
-                <div className="email data">
-                    <label htmlFor="email">email id:</label>
-                    <p>{email}</p>
-                </div>
-                {/* phone */}
-                <div className="phone data">
-                    <label htmlFor="phone">phone:</label>
-                    {
-                        !editable ? <p>{phone}</p> :
-                            <input type="number" value={phone ? phone : '0000000000'} id='phone' onChange={(eve) => setPhone(eve.target.value)} />
-                    }
-                </div>
-                {/* address */}
-                <div className="address data">
-                    <label htmlFor="address">address:</label>
-                    {
-                        !editable ? <p>{address}</p> :
-                            <input type="text" value={address || ''} id='address' onChange={(eve) => setAddress(eve.target.value)} />
-                    }
-                </div>
-            </div>
-            <div className="basicInfo infoTitle">
-                <h2>basic information</h2>
-                {/* gender */}
-                <div className="gender data">
-                    <label htmlFor="gender">gender :</label>
-                    {
-                        !editable ? <p>{gender}</p> :
-                            <select name="gender" id="gender" onChange={(eve) => setGender(eve.target.value)}>
-                                <option value="noOption">No option</option>
-                                <option value="male">male</option>
-                                <option value="female">female</option>
-                            </select>
-                    }
-                </div>
-                {/* birthday */}
-                <div className="birthday data">
-                    <label htmlFor="birthday">birthday:</label>
-                    {
-                        !editable ? <p>{birthday}</p> :
-                            <input type='date' value={birthday} onChange={(eve) => setBirthday(eve.target.value)} />
-                    }
-                </div>
-            </div>
-            {editable ? <button onClick={() => handleAfterEdit()}>save information</button>
-                : <button onClick={() => setEditable(!editable)}>edit</button>}
-        </div>
-    //   </div>
-    
-  );
-
-
-   
-=======
     user = {
       ...user,
       full_name: name,
+      email,
       gender,
       birthday,
       phone,
@@ -141,18 +62,16 @@ const Profile = ({ userData }) => {
     };
 
     let allUsers = JSON.parse(localStorage.getItem("users"));
-    allUsers = allUsers.map((e) => {
-      if (e.password === user.password && e.email === user.email) {
-        return user;
-      } else {
-        return e;
-      }
-    });
+    allUsers = allUsers.map((e) =>
+      e.password === user.password && e.email === user.email ? user : e
+    );
+
     localStorage.setItem("users", JSON.stringify(allUsers));
     localStorage.setItem("currentUser", JSON.stringify(user));
   };
 
   if (!login) return null;
+
   return (
     <>
       <ToastContainer />
@@ -160,11 +79,7 @@ const Profile = ({ userData }) => {
         <div className="picture">
           {editable ? (
             <label htmlFor="profile-image-upload" style={{ cursor: "pointer" }}>
-              <img
-                src={newImage || profileImage}
-                alt="profile"
-                loading="lazy"
-              />
+              <img src={newImage || profileImage} alt="profile" loading="lazy" />
               <input
                 type="file"
                 className="hidden"
@@ -177,7 +92,7 @@ const Profile = ({ userData }) => {
             <img src={profileImage} alt="profile" loading="lazy" />
           )}
         </div>
-        {/* user name */}
+
         <div className="name">
           {!editable ? (
             <h1>{name}</h1>
@@ -189,10 +104,9 @@ const Profile = ({ userData }) => {
             />
           )}
         </div>
-        {/* contact info */}
+
         <div className="contactInfo infoTitle">
           <h2>contact information</h2>
-          {/* email */}
           <div className="email data">
             <label htmlFor="email">email id:</label>
             {!editable ? (
@@ -206,7 +120,6 @@ const Profile = ({ userData }) => {
               />
             )}
           </div>
-          {/* phone */}
           <div className="phone data">
             <label htmlFor="phone">phone:</label>
             {!editable ? (
@@ -214,13 +127,12 @@ const Profile = ({ userData }) => {
             ) : (
               <input
                 type="number"
-                value={phone ? phone : "0000000000"}
+                value={phone}
                 id="phone"
                 onChange={(eve) => setPhone(eve.target.value)}
               />
             )}
           </div>
-          {/* address */}
           <div className="address data">
             <label htmlFor="address">address:</label>
             {!editable ? (
@@ -228,16 +140,16 @@ const Profile = ({ userData }) => {
             ) : (
               <input
                 type="text"
-                value={address || ""}
+                value={address}
                 id="address"
                 onChange={(eve) => setAddress(eve.target.value)}
               />
             )}
           </div>
         </div>
+
         <div className="basicInfo infoTitle">
           <h2>basic information</h2>
-          {/* gender */}
           <div className="gender data">
             <label htmlFor="gender">gender :</label>
             {!editable ? (
@@ -246,14 +158,15 @@ const Profile = ({ userData }) => {
               <select
                 name="gender"
                 id="gender"
-                onChange={(eve) => setGender(eve.target.value)}>
+                value={gender}
+                onChange={(eve) => setGender(eve.target.value)}
+              >
                 <option value="noOption">No option</option>
                 <option value="male">male</option>
                 <option value="female">female</option>
               </select>
             )}
           </div>
-          {/* birthday */}
           <div className="birthday data">
             <label htmlFor="birthday">birthday:</label>
             {!editable ? (
@@ -267,15 +180,15 @@ const Profile = ({ userData }) => {
             )}
           </div>
         </div>
+
         {editable ? (
-          <button onClick={() => handleAfterEdit()}>save information</button>
+          <button onClick={handleAfterEdit}>save information</button>
         ) : (
-          <button onClick={() => setEditable(!editable)}>edit</button>
+          <button onClick={() => setEditable(true)}>edit</button>
         )}
       </div>
     </>
   );
->>>>>>> 03400b07e394bb21bdefbd46dfa950cb8610543f
 };
 
 export default Profile;
