@@ -42,7 +42,7 @@ const Login = () => {
     const emailErr = !/^(?:\w{3,})(?:[@])(?:\w{2,})\.\w{2,}$/.test(
       data.email.trim()
     )
-      ? "this field is required"
+      ? "This field should match the email form"
       : "";
 
     const passErr = !data.password.match(

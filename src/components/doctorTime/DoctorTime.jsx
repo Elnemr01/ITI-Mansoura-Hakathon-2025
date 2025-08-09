@@ -11,7 +11,7 @@ const DoctorTime = ({ doctors }) => {
   const [slotDate, setSlotDate] = useState(null);
   const [slotTime, setSlotTime] = useState(null);
 
-  const [selectedDayIndex, setSelectedDayIndex] = useState(0);
+  const [selectedDayIndex, setSelectedDayIndex] = useState(null);
   const [selectedTimeIndex, setSelectedTimeIndex] = useState(null);
   const { login } = useContext(OurContext);
   const dispatch = useDispatch();
@@ -142,19 +142,19 @@ const DoctorTime = ({ doctors }) => {
         <div className="time_container">
           {doctorTime[selectedDayIndex]?.length > 0 ? (
             doctorTime[selectedDayIndex].map((slot, index) => {
-              const slotDay = slot.datetime
+              const slotDay = slot?.datetime
                 .toDateString()
                 .split(" ")[0]
                 .toUpperCase();
-              const slotDaynum = slot.datetime.getDate();
-              const slotYear = slot.datetime.getFullYear();
+              const slotDaynum = slot?.datetime?.getDate();
+              const slotYear = slot?.datetime?.getFullYear();
 
               const isBooked = appointmentArr.some((app) => {
                 return (
                   slotDay === app?.date?.day &&
                   slotDaynum === app?.date?.dayNum &&
                   slotYear === app?.date?.year &&
-                  app?.time === slot.time
+                  app?.time === slot?.time
                 );
               });
 
@@ -165,6 +165,8 @@ const DoctorTime = ({ doctors }) => {
                     if (!isBooked) {
                       setSelectedTimeIndex(index);
                       setSlotTime(slot.time);
+                    } else {
+                      toast.error("This Appointment is Already Booked");
                     }
                   }}
                   className={`slot-item ${
