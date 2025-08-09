@@ -1,9 +1,9 @@
 import React, { useRef } from 'react'
-import "./hero.css"
+import "./heroStyle.css"
 import { assets } from '../../assets/assets_frontend/assets'
 import { motion, useInView } from 'framer-motion'
 
-const Hero = () => {
+const HeroSection = () => {
     const heroRef = useRef(null)
     const isInView = useInView(heroRef, { once: false })
 
@@ -73,4 +73,4 @@ const Hero = () => {
     )
 }
 
-export default Hero
+export default HeroSection
