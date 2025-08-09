@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import { createContext } from "react";
+import { assets } from '../assets/assets_frontend/assets';
 
 export let OurContext = createContext();
 
@@ -11,7 +12,7 @@ const FilterName = ({ children }) => {
     });
     const [profileImage, setProfileImage] = useState(() => {
         const user = JSON.parse(localStorage.getItem('currentUser'));
-        return user?.profileImage || null;
+        return user?.profileImage || assets.upload_area;
     });
 
     useEffect(() => {
