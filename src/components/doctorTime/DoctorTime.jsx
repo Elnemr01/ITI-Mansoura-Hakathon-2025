@@ -151,10 +151,10 @@ const DoctorTime = ({ doctors }) => {
 
               const isBooked = appointmentArr.some((app) => {
                 return (
-                  slotDay === app.date.day &&
-                  slotDaynum === app.date.dayNum &&
-                  slotYear === app.date.year &&
-                  app.time === slot.time
+                  slotDay === app?.date?.day &&
+                  slotDaynum === app?.date?.dayNum &&
+                  slotYear === app?.date?.year &&
+                  app?.time === slot.time
                 );
               });
 

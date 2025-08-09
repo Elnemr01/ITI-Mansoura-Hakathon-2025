@@ -39,8 +39,11 @@ const Login = () => {
         ? "name must contain between 6 to 20 chars"
         : "";
 
-    const emailErr =
-      data.email.trim().length === 0 ? "this field is required" : "";
+    const emailErr = !/^(?:\w{3,})(?:[@])(?:\w{2,})\.\w{2,}$/.test(
+      data.email.trim()
+    )
+      ? "this field is required"
+      : "";
 
     const passErr = !data.password.match(
       /^(?=.*[a-z])(?=.*\d)(?=.*[!@#$%^&*()_+{}[\]:;"'<>,.?/~`\\|-]).{5,}$/
@@ -75,7 +78,7 @@ const Login = () => {
             setLogin(() => true);
             toast.success("login successfully");
             setTimeout(() => {
-              navigate("/");
+              // navigate("/");
             }, 1800);
           } else {
             // incorrect email or password
@@ -123,7 +126,7 @@ const Login = () => {
     <div className="login-page">
       <ToastContainer position="top-right" />
       <div className="form">
-        <form onSubmit={onSubmit}>
+        <form onSubmit={onSubmit} noValidate>
           <h2>{isLogin ? "Login" : "Create Account"}</h2>
           <span className="sub-title">
             Please {isLogin ? "log" : "sign up"} to book appointment
