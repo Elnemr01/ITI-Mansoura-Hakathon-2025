@@ -56,3 +56,15 @@
         @apply w-full;
     }
     }
+
+
+    .profile .nameError {
+        text-align: center;
+        color: red;
+        font-size: .875rem;
+    }
+
+    .profile .error {
+        color: red;
+        font-size: .875rem;
+    }

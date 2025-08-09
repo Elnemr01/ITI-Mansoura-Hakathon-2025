@@ -3,8 +3,10 @@ import "./pageStyle/profilePage.css";
 import { OurContext } from "../contextAPI/FilterName";
 import { assets } from "./../assets/assets_frontend/assets";
 import { toast, ToastContainer } from "react-toastify";
+import Joi from "joi";
+import { p } from "framer-motion/client";
 
-const Profile = ({ userData }) => {
+const Profile = () => {
   let { login, setProfileImage } = useContext(OurContext);
   let [editable, setEditable] = useState(false);
   let [name, setName] = useState("");
@@ -15,6 +17,7 @@ const Profile = ({ userData }) => {
   let [birthday, setBirthday] = useState("");
   let [profileImage, setLocalProfileImage] = useState(assets.upload_area);
   let [newImage, setNewImage] = useState(null);
+  let [errorMessages, setErrorMessages] = useState([]);
 
   useEffect(() => {
     const user = JSON.parse(localStorage.getItem("currentUser"));
@@ -41,7 +44,18 @@ const Profile = ({ userData }) => {
   };
 
   const handleAfterEdit = () => {
-    setEditable(!editable);
+    let result = formValidation();
+    if (result.error) {
+      setErrorMessages(getFormErrors(result.error.details));
+      console.log(getFormErrors(result.error.details));
+    } else {
+      updateUserInfo();
+    }
+  };
+
+  let updateUserInfo = () => {
+    setEditable((old) => !old);
+    setErrorMessages([]);
     toast.success("Profile Updated");
     let user = JSON.parse(localStorage.getItem("currentUser"));
 
@@ -70,6 +84,77 @@ const Profile = ({ userData }) => {
     localStorage.setItem("currentUser", JSON.stringify(user));
   };
 
+  let formValidation = () => {
+    let schema = Joi.object({
+      name: Joi.string().min(6).required().messages({
+        "string.base": "Name must be a text",
+        "string.empty": "Name is required",
+        "string.min": "Name must be at least 6 characters",
+        "any.required": "Name is required",
+      }),
+
+      email: Joi.string()
+        .email({ tlds: { allow: false } })
+        .required()
+        .messages({
+          "string.base": "Email must be a text",
+          "string.empty": "Email is required",
+          "string.email": "Please enter a valid email",
+          "any.required": "Email is required",
+        }),
+
+      phone: Joi.string().length(11).pattern(/^\d+$/).required().messages({
+        "string.base": "Phone must be a a valid phone number",
+        "string.empty": "Phone is required",
+        "string.length": "Phone must be exactly 11 digits",
+        "string.pattern.base": "Phone must contain only numbers",
+        "any.required": "Phone is required",
+      }),
+
+      address: Joi.string().required().messages({
+        "string.base": "Address must be a text",
+        "string.empty": "Address is required",
+        "any.required": "Address is required",
+      }),
+
+      gender: Joi.string().required().messages({
+        "string.empty": "Gender is required",
+        "any.required": "Gender is required",
+      }),
+
+      birthday: Joi.string().required().messages({
+        "string.base": "Birthday must be text",
+        "string.empty": "Birthday is required",
+        "any.required": "Birthday is required",
+      }),
+    });
+
+    return schema.validate(
+      {
+        name,
+        email,
+        phone,
+        address,
+        gender,
+        birthday,
+      },
+      { abortEarly: false }
+    );
+  };
+
+  let getFormErrors = (details) => {
+    const errors = {};
+
+    details.forEach((err) => {
+      const field = err.path?.[0];
+      if (field && !errors[field]) {
+        errors[field] = err.message.replace(/\"/g, "");
+      }
+    });
+
+    return errors;
+  };
+
   if (!login) return null;
 
   return (
@@ -79,7 +164,11 @@ const Profile = ({ userData }) => {
         <div className="picture">
           {editable ? (
             <label htmlFor="profile-image-upload" style={{ cursor: "pointer" }}>
-              <img src={newImage || profileImage} alt="profile" loading="lazy" />
+              <img
+                src={newImage || profileImage}
+                alt="profile"
+                loading="lazy"
+              />
               <input
                 type="file"
                 className="hidden"
@@ -104,7 +193,12 @@ const Profile = ({ userData }) => {
             />
           )}
         </div>
-
+        {errorMessages["name"] ? (
+          <p className="nameError">{errorMessages["name"]}</p>
+        ) : (
+          ""
+        )}
+        {/* contact info */}
         <div className="contactInfo infoTitle">
           <h2>contact information</h2>
           <div className="email data">
@@ -120,19 +214,31 @@ const Profile = ({ userData }) => {
               />
             )}
           </div>
+          {errorMessages["email"] ? (
+            <p className="error">{errorMessages["email"]}</p>
+          ) : (
+            ""
+          )}
+          {/* phone */}
           <div className="phone data">
             <label htmlFor="phone">phone:</label>
             {!editable ? (
               <p>{phone}</p>
             ) : (
               <input
-                type="number"
-                value={phone}
+                type="text"
+                value={phone ? phone : ""}
                 id="phone"
                 onChange={(eve) => setPhone(eve.target.value)}
               />
             )}
           </div>
+          {errorMessages["phone"] ? (
+            <p className="error">{errorMessages["phone"]}</p>
+          ) : (
+            ""
+          )}
+          {/* address */}
           <div className="address data">
             <label htmlFor="address">address:</label>
             {!editable ? (
@@ -146,6 +252,11 @@ const Profile = ({ userData }) => {
               />
             )}
           </div>
+          {errorMessages["address"] ? (
+            <p className="error">{errorMessages["address"]}</p>
+          ) : (
+            ""
+          )}
         </div>
 
         <div className="basicInfo infoTitle">
@@ -159,14 +270,19 @@ const Profile = ({ userData }) => {
                 name="gender"
                 id="gender"
                 value={gender}
-                onChange={(eve) => setGender(eve.target.value)}
-              >
+                onChange={(eve) => setGender(eve.target.value)}>
                 <option value="noOption">No option</option>
                 <option value="male">male</option>
                 <option value="female">female</option>
               </select>
             )}
           </div>
+          {errorMessages["gender"] ? (
+            <p className="error">{errorMessages["gender"]}</p>
+          ) : (
+            ""
+          )}
+          {/* birthday */}
           <div className="birthday data">
             <label htmlFor="birthday">birthday:</label>
             {!editable ? (
@@ -179,12 +295,17 @@ const Profile = ({ userData }) => {
               />
             )}
           </div>
+          {errorMessages["birthday"] ? (
+            <p className="error">{errorMessages["birthday"]}</p>
+          ) : (
+            ""
+          )}
         </div>
 
         {editable ? (
           <button onClick={handleAfterEdit}>save information</button>
         ) : (
-          <button onClick={() => setEditable(true)}>edit</button>
+          <button onClick={() => setEditable((old) => !old)}>edit</button>
         )}
       </div>
     </>
