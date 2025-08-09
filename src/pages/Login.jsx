@@ -78,7 +78,7 @@ const Login = () => {
             setLogin(() => true);
             toast.success("login successfully");
             setTimeout(() => {
-              // navigate("/");
+              navigate("/");
             }, 1800);
           } else {
             // incorrect email or password
